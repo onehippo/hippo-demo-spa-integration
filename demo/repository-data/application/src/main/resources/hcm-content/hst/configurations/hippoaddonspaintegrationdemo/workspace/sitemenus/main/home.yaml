@@ -1,0 +1,4 @@
+/hst:hst/hst:configurations/hippoaddonspaintegrationdemo/hst:workspace/hst:sitemenus/main/home:
+  jcr:primaryType: hst:sitemenuitem
+  jcr:uuid: 577bef4f-19a0-42fe-ae9e-51dd195b6c58
+  hst:referencesitemapitem: root

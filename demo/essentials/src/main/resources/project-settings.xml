@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project>
+    <name>project-settings</name>
+    <applicationSubModule>application</applicationSubModule>
+    <beansFolder>site/src/main/java</beansFolder>
+    <cmsModule>cms</cmsModule>
+    <confirmParams>false</confirmParams>
+    <developmentSubModule>development</developmentSubModule>
+    <enterprise>false</enterprise>
+    <extraTemplates>true</extraTemplates>
+    <projectNamespace>hippoaddonspaintegrationdemo</projectNamespace>
+    <repositoryDataModule>repository-data</repositoryDataModule>
+    <selectedBeansPackage>com.onehippo.cms7.spa.demo.beans</selectedBeansPackage>
+    <selectedComponentsPackage>com.onehippo.cms7.spa.demo.components</selectedComponentsPackage>
+    <selectedProjectPackage>com.onehippo.cms7.spa.demo</selectedProjectPackage>
+    <selectedRestPackage>com.onehippo.cms7.spa.demo.rest</selectedRestPackage>
+    <setupDone>true</setupDone>
+    <siteModule>site</siteModule>
+    <templateLanguage>freemarker</templateLanguage>
+    <useSamples>true</useSamples>
+    <webfilesSubModule>webfiles</webfilesSubModule>
+</project>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="http://www.onehippo.org/schema/hst/hst-addon-module_1_0.xsd">
+  <name>com.onehippo.cms7.genericresource.entitybuilder</name>
+  <config-locations>
+    <config-location>
+      classpath*:META-INF/hst-assembly/overrides/addon/com/onehippo/cms7/genericresource/entitybuilder/*.xml
+    </config-location>
+  </config-locations>
+</module>

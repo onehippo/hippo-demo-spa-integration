@@ -1,0 +1,18 @@
+definitions:
+  config:
+    /hst:hst/hst:configurations/hst:default/hst:catalog/essentials-catalog:
+      jcr:primaryType: hst:containeritempackage
+      /banner:
+        jcr:primaryType: hst:containeritemcomponent
+        hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsDocumentComponent
+        hst:iconpath: images/essentials/catalog-component-icons/banner.png
+        hst:label: Banner
+        hst:template: essentials-banner
+        hst:xtype: hst.item
+      /newslist:
+        jcr:primaryType: hst:containeritemcomponent
+        hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsNewsComponent
+        hst:iconpath: images/essentials/catalog-component-icons/news-list.png
+        hst:label: News List
+        hst:template: newslist-main-newslist
+        hst:xtype: hst.item

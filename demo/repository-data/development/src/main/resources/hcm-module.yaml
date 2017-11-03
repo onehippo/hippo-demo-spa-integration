@@ -1,0 +1,7 @@
+group: 
+  name: hippo-addon-spa-integration-demo
+  after: hippo-cms
+project: hippo-addon-spa-integration-demo
+module: 
+  name: hippo-addon-spa-integration-demo-repository-data-development
+  after: hippo-addon-spa-integration-demo-repository-data-application

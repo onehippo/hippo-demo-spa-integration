@@ -1,0 +1,4 @@
+/hst:hst/hst:configurations/hippoaddonspaintegrationdemo/hst:workspace/hst:sitemenus/main/news:
+  jcr:primaryType: hst:sitemenuitem
+  jcr:uuid: 1c4170e9-2192-4a18-8bee-fe4ffa83848a
+  hst:referencesitemapitem: news

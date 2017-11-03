@@ -1,0 +1,9 @@
+/content/documents/hippoaddonspaintegrationdemo:
+  .meta:order-before: administration
+  jcr:primaryType: hippostd:folder
+  jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:referenceable']
+  jcr:uuid: fe0840cb-a15a-4b08-9cbf-8d5195477e51
+  hippo:name: Hippo Addon SPA Integration Demo
+  hippostd:foldertype: [new-translated-folder, new-document]
+  hippotranslation:id: 996bcac5-86cf-49b5-a7a3-16a74863e814
+  hippotranslation:locale: en

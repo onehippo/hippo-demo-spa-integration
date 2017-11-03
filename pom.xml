@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2017 BloomReach, Inc. (http://www.bloomreach.com)
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.onehippo.cms7</groupId>
+    <artifactId>hippo-cms7-enterprise-project</artifactId>
+    <version>29.2</version>
+  </parent>
+
+  <name>Hippo SPA Integration Addon</name>
+  <description>Hippo SPA Integration Addon</description>
+  <artifactId>hippo-addon-spa-integration</artifactId>
+  <version>1.0.0</version>
+  <url>http://www.bloomreach.com/</url>
+  <inceptionYear>2017</inceptionYear>
+
+  <properties>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <hippo.repository.version>5.0.2</hippo.repository.version>
+    <hippo.hst.version>5.0.2</hippo.hst.version>
+    <hippo.essentials-components.version>4.0.2</hippo.essentials-components.version>
+    <hippo-addon-generic-resource-entity-builder.version>1.0.1</hippo-addon-generic-resource-entity-builder.version>
+
+  </properties>
+
+  <licenses>
+    <license>
+      <name>BloomReach Experience Software License</name>
+      <url>https://www.bloomreach.com/</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <repositories>
+    <repository>
+      <id>hippo</id>
+      <name>Hippo maven 2 repository.</name>
+      <url>http://maven.onehippo.com/maven2/</url>
+    </repository>
+    <repository>
+      <id>hippo-maven2-enterprise</id>
+      <name>Hippo Maven 2 Enterprise</name>
+      <url>https://maven.onehippo.com/maven2-enterprise/</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+    </repository>
+  </repositories>
+
+  <scm>
+    <connection>scm:git:git@code.onehippo.org:sandbox/spa-integration-module.git</connection>
+    <developerConnection>scm:git:git@code.onehippo.org:sandbox/spa-integration-module.git</developerConnection>
+    <url>https://code.onehippo.org/sandbox/spa-integration-module</url>
+  </scm>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.onehippo.cms7.hst</groupId>
+      <artifactId>hst-commons</artifactId>
+      <version>${hippo.hst.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.onehippo.cms7.hst.components</groupId>
+      <artifactId>hst-core</artifactId>
+      <version>${hippo.hst.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-essentials-components-hst</artifactId>
+      <version>${hippo.essentials-components.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.onehippo.cms7</groupId>
+      <artifactId>hippo-addon-generic-resource-entity-builder</artifactId>
+      <version>${hippo-addon-generic-resource-entity-builder.version}</version>
+    </dependency>
+
+  </dependencies>
+
+</project>

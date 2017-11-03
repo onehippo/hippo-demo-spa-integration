@@ -1,0 +1,6 @@
+/hst:hst/hst:configurations/hippoaddonspaintegrationdemo/hst:workspace/hst:containers/newspage/main/content:
+  jcr:primaryType: hst:containeritemcomponent
+  jcr:uuid: 7892d50e-d223-4325-91ba-77c1d0a2c973
+  hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsContentComponent
+  hst:template: newspage-main
+  hst:xtype: hst.item

@@ -1,0 +1,4 @@
+definitions:
+  config:
+    /hst:hst/hst:configurations/hippoaddonspaintegrationdemo/hst:abstractpages:
+      jcr:primaryType: hst:pages
