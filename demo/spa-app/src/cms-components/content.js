@@ -7,9 +7,10 @@ import { parseDate } from "../common/date";
 export default class Content extends React.Component {
   render() {
     const preview = this.props.preview;
+    let componentMetaData = {};
+    let contentMetaData = null;
 
     // get component meta-data
-    let componentMetaData = {};
     if (preview) {
       componentMetaData = getComponentMetaData(this.props.configuration.cmsData);
     }
@@ -27,9 +28,8 @@ export default class Content extends React.Component {
     }
 
     // get content meta-data
-    let contentMetaData = null;
-    if (preview) {
-      contentMetaData = getContentMetaData(this.props.configuration.attributes.document.cmsData);
+    if (preview && documentId && this.props.documents[documentId]) {
+      contentMetaData = getContentMetaData(this.props.documents[documentId].cmsData);
     }
 
     let imageUrl = null;

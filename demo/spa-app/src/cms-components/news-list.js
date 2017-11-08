@@ -33,7 +33,7 @@ export default class NewsList extends React.Component {
         // get content meta-data
         let contentMetaData = null;
         if (preview) {
-          contentMetaData = getContentMetaData(listItem.cmsData);
+          contentMetaData = getContentMetaData(this.props.documents[documentId].cmsData);
         }
 
         return (
