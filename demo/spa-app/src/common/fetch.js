@@ -2,12 +2,12 @@ import { baseUrls } from './env-vars';
 
 const requestConfigGet = {
   method: 'GET',
-  credentials: 'same-origin'
+  credentials: 'include'
 };
 
 const requestConfigPost = {
   method: 'POST',
-  credentials: 'same-origin',
+  credentials: 'include',
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded'
   }

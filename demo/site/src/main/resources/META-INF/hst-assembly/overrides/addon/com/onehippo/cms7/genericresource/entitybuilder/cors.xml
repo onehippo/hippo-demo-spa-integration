@@ -9,7 +9,11 @@
       <list>
         <bean class="org.hippoecm.hst.util.DefaultKeyValue">
           <constructor-arg value="Access-Control-Allow-Origin" />
-          <constructor-arg value="*" />
+          <constructor-arg value="http://localhost:3000" />
+        </bean>
+        <bean class="org.hippoecm.hst.util.DefaultKeyValue">
+          <constructor-arg value="Access-Control-Allow-Credentials" />
+          <constructor-arg value="true" />
         </bean>
       </list>
     </property>

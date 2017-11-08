@@ -104,6 +104,33 @@ when changes are made to a page in the CMS. Run the following command from the `
     $ node src/server
 ```
 
+## Enabling CORS
+
+You can add CORS supporting response headers by adding the following in 
+`site/src/main/resources/META-INF/hst-assembly/overrides/addon/com/onehippo/cms7/genericresource/entitybuilder/cors.xml` 
+(the filename can be different):
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+  <bean id="genericResourceEntityCustomResponseHeadersValveSettableHeaders"
+        class="org.springframework.beans.factory.config.ListFactoryBean">
+    <property name="sourceList">
+      <list>
+        <bean class="org.hippoecm.hst.util.DefaultKeyValue">
+          <constructor-arg value="Access-Control-Allow-Origin" />
+          <constructor-arg value="*" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+</beans>
+```
+
 ## Using the API
 
 You can access the API by requesting any regular site URL and prefixing it with the mount URL that has been setup in 
@@ -113,3 +140,9 @@ For example:
 ```bash
     $ curl http://localhost:8080/site/resourceapi/news
 ```
+
+## More information
+
+This addon leans on the Generic Resource Entity Builder addon for generating the API response. For more information 
+about the addon, see 
+[onehippo.org](https://www.onehippo.org/library/enterprise/services-features/greb-api/introduction.html).
