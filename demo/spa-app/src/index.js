@@ -35,7 +35,7 @@ class CmsPage extends React.Component {
                 let documents = this.state.pageStructure.documents;
                 // ignore error on next line, as variable is a reference to a sub-object of pageStructure
                 // and will be used when pageStructure is updated/set
-                documents = Object.assign(documents, response.documents);
+                documents = Object.assign(documents, response.documents); // eslint-disable-line
               }
               // update the page structure after the component/container has been updated
               this.setState({
