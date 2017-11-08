@@ -15,7 +15,7 @@ class CmsPage extends React.Component {
       // only update when a component changes, when body is empty the user has clicked cancel in component settings
       // refresh in that case to make managing state easier
       if (!data.body) {
-        location.reload();
+        window.location.reload();
       } else {
         // find the component that needs to be updated in the page structure object using its ID
         const componentToUpdate = findChildById(this.state.pageStructure, data.id);
