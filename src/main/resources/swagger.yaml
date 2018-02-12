@@ -1,0 +1,260 @@
+swagger: "2.0"
+info:
+  description: "API for integrating an SPA with Hippo CMS / BloomReach Experience, while retaining all CMS authoring capabilities such as integrated preview, in-context editing, drag & drop, and personalization."
+  version: "1.0.2"
+  title: "Hippo SPA Integration Addon"
+  termsOfService: "https://www.onehippo.org/library/about/license-and-notice-files.html"
+  contact:
+    email: "robbert.kauffman@bloomreach.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "your-hippo-site-url"
+basePath: "/resourceapi"
+schemes:
+- "http"
+- "https"
+paths:
+  /{pagePath}:
+    get:
+      summary: "Returns live version of containers for page"
+      description: "Returns an array of containers with an array of nested components, along with a map of associated content"
+      operationId: "getPageContainersLive"
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: "#/parameters/pagePath"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        404:
+          $ref: "#/responses/404ErrorResponse"
+        500:
+          $ref: "#/responses/500ErrorResponse"
+  /_cmsinternal/{pagePath}:
+    get:
+      summary: "Returns preview version of containers for page"
+      description: "Returns an array of containers with an array of nested components, along with a map of associated content. Additionally, contains CMS meta-data for enabling authoring features in SPA. NOTE: Only accessible if you are logged in to the CMS and a security handshake between CMS and site has taken place, otherwise will generate a 403 error."
+      operationId: "getPageContainersPreview"
+      produces:
+      - "application/json"
+      parameters:
+        - $ref: "#/parameters/pagePath"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        403:
+          description: "Forbidden. Login to CMS and open Preview mode, to initiate security handshake between CMS and site."
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          $ref: "#/responses/404ErrorResponse"
+        500:
+          $ref: "#/responses/500ErrorResponse"
+definitions:
+  component:
+    type: "object"
+    required: ["name", "id", "type", "parameters", "attributes", "cmsData"]
+    properties:
+      name:
+        type: "string"
+        description: "name of component"
+        example: "banner"
+      id:
+        type: "string"
+        description: "reference namespace of component"
+        example: "r4_r1_r1_r1"
+      type:
+        type: "string"
+        description: "type of component, e.g. banner"
+        example: "Banner"
+      parameters:
+        type: "object"
+        description: "map of component parameters"
+        example:
+          document: "banners/banner1"
+        additionalProperties:
+          type: "string"
+      attributes:
+        type: "object"
+        description: "map of component attributes, e.g. UUID reference to content"
+        example:
+          document: "2ed63d5c-4a0c-4ce3-9e23-e195560af232"
+        additionalProperties:
+          type: "string"
+      cmsData:
+        $ref: "#/definitions/componentCmsData"
+  components:
+    type: "array"
+    description: "array of components nested in container"
+    items:
+      $ref: "#/definitions/component"
+  container:
+    type: "object"
+    required: ["name", "id", "components", "cmsData"]
+    properties:
+      name:
+        type: "string"
+        description: "name of container"
+        example: "main"
+      id:
+        type: "string"
+        description: "reference namespace of container"
+        example: "r4_r1_r1"
+      components:
+        $ref: "#/definitions/components"
+      cmsData:
+        $ref: "#/definitions/containerCmsData"
+  containers:
+    type: "array"
+    description: "array of containers on the page"
+    items:
+      $ref: "#/definitions/container"
+  documents:
+    type: "object"
+    description: "Map of documents associated to page & components"
+    example:
+      "2ed63d5c-4a0c-4ce3-9e23-e195560af232":
+        document:
+          id: "2ed63d5c-4a0c-4ce3-9e23-e195560af232"
+          name: "banner1"
+          displayName: "banner1"
+          content:
+            value: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>"
+            id: "8695a9bb-a2e4-4687-b6af-e5b7f43e0fb4"
+          link: null
+          title: "Sample banner"
+          image:
+            fileName: "banner-1.jpg"
+            description: null
+            id: "82a132cc-5aaf-4541-a90a-a98a74818233"
+            handlePath: "/content/gallery/hippoaddonspaintegrationdemo/banners/banner-1.jpg"
+          canonicalHandleUUID: "9a3f1f5c-5302-43c4-9bec-584e810ffa2f"
+          localeString: "en"
+          handlePath: "/content/documents/hippoaddonspaintegrationdemo/banners/banner1"
+        link: "/site/_cmsinternal"
+        cmsData:
+          start:
+            HST-Type: "CONTENT_LINK"
+            uuid: "895fb1b6-410d-4972-9894-6b6a06d2b361"
+            url: "http://localhost:8080/cms?path=/content/documents/hippoaddonspaintegrationdemo/banners/banner1"
+          end: null
+    additionalProperties:
+      type: "object"
+      description: "UUID of the document"
+      properties:
+        document:
+          type: "object"
+          description: "map of fields and values of document generated by content beans"
+          additionalProperties:
+            type: "string"
+        link:
+          type: "string"
+          example: "/site/news/2017/10/the-gastropoda-news.html"
+          description: "URL to document"
+        cmsData:
+          $ref: "#/definitions/contentCmsData"
+  componentCmsData:
+    type: "object"
+    description: "map of component meta-data for CMS preview, is null when live version is requested"
+    properties:
+      start:
+        type: "object"
+        example:
+          HST-Label: "Banner"
+          HST-LastModified: "1510871315916"
+          HST-XType: "hst.item"
+          uuid: "04d03efd-f4bd-4d5c-ab1a-9df4ad363e7e"
+          HST-Type: "CONTAINER_ITEM_COMPONENT"
+          refNS: "r4_r1_r1_r1"
+          url: "/site/_cmsinternal/resourceapi?_hn:type=component-rendering&_hn:ref=r4_r1_r1_r1"
+        additionalProperties:
+          type: "string"
+      end:
+        type: "object"
+        example:
+          uuid: "04d03efd-f4bd-4d5c-ab1a-9df4ad363e7e"
+          HST-End: "true"
+        additionalProperties:
+          type: "string"
+  containerCmsData:
+    type: "object"
+    description: "map of container meta-data for CMS preview, is null when live version is requested"
+    properties:
+      start:
+        type: "object"
+        example:
+          HST-Label: "Home Page Main"
+          HST-LastModified: "1510871315916"
+          HST-XType: "hst.vbox"
+          uuid: "0d8c09ec-ff1c-41f5-b61a-223ec90f97de"
+          HST-Type: "CONTAINER_COMPONENT"
+          refNS: "r4_r1_r1"
+          url: "/site/_cmsinternal/resourceapi?_hn:type=component-rendering&_hn:ref=r4_r1_r1"
+        additionalProperties:
+          type: "string"
+      end:
+        type: "object"
+        example:
+          uuid: "0d8c09ec-ff1c-41f5-b61a-223ec90f97de"
+          HST-End: "true"
+        additionalProperties:
+          type: "string"
+  contentCmsData:
+    type: "object"
+    description: "map containing content meta-data for CMS preview, is null when live version is requested"
+    properties:
+      start:
+        type: "object"
+        additionalProperties:
+          type: "string"
+      end:
+        type: "object"
+        additionalProperties:
+          type: "string"
+  pageTemplate:
+    type: "string"
+    description: "type of the page"
+    example: "hst:pages/homepage"
+  ApiResponse:
+    type: "object"
+    required: ["pageTemplate"]
+    properties:
+      pageTemplate:
+        $ref: "#/definitions/pageTemplate"
+      containers:
+        $ref: "#/definitions/containers"
+      documents:
+        $ref: "#/definitions/documents"
+  Error:
+    required: ["code", "message"]
+    properties:
+      code:
+        type: "number"
+        example: "500"
+      message:
+        type: "string"
+        example: "An unexpected error occured."
+parameters:
+  pagePath:
+    name: "pagePath"
+    in: "path"
+    description: "Relative path to page"
+    required: true
+    type: "string"
+responses:
+  404ErrorResponse:
+    description: "Page not found"
+    schema:
+      $ref: "#/definitions/Error"
+  500ErrorResponse:
+    description: "An unexpected error occured."
+    schema:
+      $ref: "#/definitions/Error"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
