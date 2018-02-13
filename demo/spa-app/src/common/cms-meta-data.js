@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import {baseUrls} from '../common/env-vars';
 
 export default class CmsMetaData extends Component {
   componentDidMount() {
@@ -11,11 +10,6 @@ export default class CmsMetaData extends Component {
 
   createComment() {
     let comment = JSON.stringify(this.props.data);
-    // replace component rendering URL with hostname and port of sockets server
-    // so that socket server can trigger state changes in React app on component updates
-    if(comment.indexOf('"url":"/') !== -1) {
-      comment = comment.replace('"url":"', '"url":"' + baseUrls.socketsServerUrl);
-    }
     return `<!-- ${comment} -->`;
   }
 

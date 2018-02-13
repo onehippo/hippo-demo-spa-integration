@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
-import { subscribeToUpdateCmsPage } from './client';
 import { fetchCmsPage, fetchComponentUpdate } from './common/fetch';
 import CmsContainer from './cms-components/container';
 
@@ -9,19 +8,21 @@ class CmsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
 
-    // fires when a component is updated in the CMS and the sockets server emits 'update' event
-    subscribeToUpdateCmsPage(data => {
-      // only update when a component changes, when body is empty the user has clicked cancel in component settings
-      // refresh in that case to make managing state easier
-      if (!data.body) {
-        window.location.reload();
-      } else {
+  updateState (component, propertiesMap) {
+    // only update when a component changes, when propertiesMap is empty the user has clicked cancel in component settings
+    // refresh in that case as an easy workaround
+    if (Object.keys(propertiesMap).length === 0) {
+      window.location.reload();
+    } else {
+      if (component && component.metaData && component.metaData.refNS) {
+        const componentId = component.metaData.refNS;
         // find the component that needs to be updated in the page structure object using its ID
-        const componentToUpdate = findChildById(this.state.pageStructure, data.id);
+        const componentToUpdate = findChildById(this.state.pageStructure, componentId);
         if (componentToUpdate !== undefined) {
           // fetch updated component from the API
-          fetchComponentUpdate(data.url, data.body).then(response => {
+          fetchComponentUpdate(this.props.match.params, componentId, propertiesMap).then(response => {
             // API can return empty response when component is deleted
             if (response) {
               // API can return either a single component or single container
@@ -44,17 +45,17 @@ class CmsPage extends React.Component {
             }
           });
         } else {
-          console.log('Error! Component with id %s not found', data.id);
+          console.log('Error! Component with id %s not found', componentId);
         }
       }
-    });
+    }
   }
 
   componentDidUpdate () {
     // parse CMS comments for rendering of content & component overlays
     // do this after client-side rendering is finished
     // also, override Hippo Channel Manager functions for handling state changes of components & containers
-    hippoJavascriptInitialization();
+    hippoJavascriptInitialization(this);
   }
 
   componentDidMount() {
@@ -88,7 +89,7 @@ class CmsPage extends React.Component {
 }
 
 // calls and overrides some of the Angular/JS functions of the Hippo Channel Manager
-function hippoJavascriptInitialization () {
+function hippoJavascriptInitialization (reactContext) {
   if (window && window.parent && window.parent.angular) {
     const injector = window.parent.angular.element(window.parent.document.body).injector();
     const hstCommentsProcessorService = injector.get("hstCommentsProcessorService");
@@ -105,16 +106,20 @@ function hippoJavascriptInitialization () {
     // add content & component links and overlays
     PageStructureService.attachEmbeddedLinks();
 
-    // prevent CM from replacing markup of component when it updates,
-    // for which it normally uses the response of the component rendering request.
-    // as we're rendering client-side instead of serverside,
-    // the response of the component rendering request cannot be used for this.
-    // instead, markup is updated by React app as soon as page structure is updated, see 'subscribeToUpdateCmsPage'
-    PageStructureService._updateComponent = function(oldComponent, newMarkup) {
+    // Override renderComponent() function which normally requests the componentRenderingURL
+    // and then updates the markup of the component by calling updateComponent().
+    // Instead, pass the component and the updated properties to the React app,
+    // so that the SPA can update the state
+    PageStructureService.renderComponent = function(componentId, propertiesMap) {
+      let component = this.getComponentById(componentId);
+      if (component) {
+        reactContext.updateState(component, propertiesMap);
+      } else {
+        this.$log.warn(`Cannot render unknown component '${componentId}'`);
+      }
     };
 
-    // similar to '_updateComponent'.
-    // since overriding this function causes the state of the containers to get out of sync,
+    // Since NOOPing _updateContainer() causes the state of the containers to get out of sync,
     // trigger a reload of the page as an easy workaround,
     // instead of having to rewrite the function for client-side rendering
     PageStructureService._updateContainer = function(oldContainer, newMarkup) {

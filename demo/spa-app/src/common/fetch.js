@@ -14,6 +14,25 @@ const requestConfigPost = {
 };
 
 function fetchCmsPage(routerParams) {
+  const url = buildApiUrl(routerParams, null);
+  return fetchUrl(url, requestConfigGet);
+}
+
+function fetchComponentUpdate(routerParams, componentId, body) {
+  let requestConfig = requestConfigPost;
+  requestConfig.body = toUrlEncodedFormData(body);
+  const url = buildApiUrl(routerParams, componentId);
+  return fetchUrl(url, requestConfigPost);
+}
+
+// from rendering.service.js
+function toUrlEncodedFormData(json) {
+  return Object.keys(json)
+    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(json[key])}`)
+    .join('&');
+}
+
+function buildApiUrl(routerParams, componentId) {
   let url = baseUrls.cmsBaseUrl;
   // add api path to URL, and prefix with contextPath and preview-prefix if used
   if (routerParams.contextPath) {
@@ -26,14 +45,11 @@ function fetchCmsPage(routerParams) {
   if (routerParams.pathInfo) {
     url += '/' + routerParams.pathInfo;
   }
-
-  return fetchUrl(url, requestConfigGet);
-}
-
-function fetchComponentUpdate(url, body) {
-  let requestConfig = requestConfigPost;
-  requestConfig.body = body;
-  return fetchUrl(url, requestConfigPost)
+  // if component ID is supplied, URL should be a component rendering URL
+  if (componentId) {
+    url += baseUrls.cmsApiComponentRenderingUrlSuffix + componentId;
+  }
+  return url;
 }
 
 function fetchUrl(url, requestConfig) {
@@ -45,8 +61,8 @@ function fetchUrl(url, requestConfig) {
       return Promise.reject(response.status);
     }).then(response => {
       return response.json();
-    // }).then(result => {
-    //   console.log(result);
+      // }).then(result => {
+      //   console.log(result);
     }).catch(error => {
       console.log('Error while fetching CMS page data for URL:', url);
       console.log(error);
