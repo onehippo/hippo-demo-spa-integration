@@ -1,5 +1,5 @@
 import React from 'react';
-import { getComponentMetaData } from '../common/cms-meta-data';
+import { getComponentMetaData } from '../../utils/cms-meta-data';
 import Placeholder from './placeholder';
 
 export default class UndefinedComponent extends React.Component {

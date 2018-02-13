@@ -1,8 +1,8 @@
 import React from 'react';
-import { getComponentMetaData, getContentMetaData } from '../common/cms-meta-data';
-import Placeholder from './placeholder';
-import { baseUrls } from '../common/env-vars';
-import { parseDate } from "../common/date";
+import { getComponentMetaData, getContentMetaData } from '../../utils/cms-meta-data';
+import Placeholder from '../core/placeholder';
+import { baseUrls } from '../../env-vars';
+import { parseDate } from '../../utils/date';
 
 export default class Content extends React.Component {
   render() {

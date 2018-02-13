@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import CmsPage from './cms-components/page';
+import CmsPage from './cms-components/core/page';
 
 ReactDOM.render(
   <BrowserRouter>

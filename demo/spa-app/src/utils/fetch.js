@@ -1,4 +1,4 @@
-import { baseUrls } from './env-vars';
+import { baseUrls } from '../env-vars';
 
 const requestConfigGet = {
   method: 'GET',

@@ -1,7 +1,7 @@
 import React from 'react';
-import { getComponentMetaData, getContentMetaData } from '../common/cms-meta-data';
-import Placeholder from './placeholder';
-import { parseDate } from "../common/date";
+import { getComponentMetaData, getContentMetaData } from '../../utils/cms-meta-data';
+import Placeholder from '../core/placeholder';
+import { parseDate } from '../../utils/date';
 
 export default class NewsList extends React.Component {
 

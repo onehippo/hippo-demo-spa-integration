@@ -1,7 +1,7 @@
 import React from 'react';
-import { fetchCmsPage, fetchComponentUpdate } from '../common/fetch';
-import { cmsJavascriptInitialization } from '../common/cms-js-overrides';
-import { findChildById } from '../common/find-child-by-id';
+import { fetchCmsPage, fetchComponentUpdate } from '../../utils/fetch';
+import { cmsJavascriptInitialization } from '../../utils/cms-js-overrides';
+import { findChildById } from '../../utils/find-child-by-id';
 import CmsContainer from './container';
 
 export default class CmsPage extends React.Component {

@@ -1,8 +1,8 @@
 import React from 'react';
-import { getComponentMetaData } from '../common/cms-meta-data';
-import Banner from './banner';
-import Content from './content';
-import NewsList from './news-list';
+import { getComponentMetaData } from '../../utils/cms-meta-data';
+import Banner from '../essentials/banner';
+import Content from '../essentials/content';
+import NewsList from '../essentials/news-list';
 import UndefinedComponent from './undefined';
 
 export default class CmsContainer extends React.Component {
