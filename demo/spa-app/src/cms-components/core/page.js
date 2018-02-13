@@ -72,9 +72,9 @@ export default class CmsPage extends React.Component {
 
     let containers = null;
     if (pageStructure && pageStructure.containers) {
-      const documents = pageStructure.documents;
+      const content = pageStructure.documents;
       containers = pageStructure.containers.map(container => {
-        return (<CmsContainer configuration={container} documents={documents} preview={preview} key={container.id}/>);
+        return (<CmsContainer configuration={container} content={content} preview={preview} key={container.id}/>);
       });
     }
 

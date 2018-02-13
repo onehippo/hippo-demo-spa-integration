@@ -1,56 +1,50 @@
 import React from 'react';
 import { getComponentMetaData } from '../../utils/cms-meta-data';
-import Banner from '../essentials/banner';
-import Content from '../essentials/content';
-import NewsList from '../essentials/news-list';
-import UndefinedComponent from './undefined';
+import BaseComponent from './base-component';
 
 export default class CmsContainer extends React.Component {
-  renderComponent (containerConfig = { components: [] }, documents, preview) {
+  renderContainer(containerConfig, containerMetaData, content, preview) {
+    // based on the name of the container, render a different wrapper
+    switch (containerConfig.name) {
+      // add cases here if you need custom HTML for a container
+      default:
+        return (
+          <React.Fragment>
+            { containerMetaData.start }
+            <div className="hst-container">
+              { this.renderComponent(containerConfig, content, preview) }
+            </div>
+            { containerMetaData.end }
+          </React.Fragment>
+        );
+    }
+  }
+
+  renderComponent(containerConfig = { components: [] }, content, preview) {
     // render all of the container-items (components)
     return containerConfig.components.map((component) => {
-      // based on the type of the component, render a different React component
-      switch(component.type) {
-        case 'Banner':
-          return (
-            <Banner configuration={component} documents={documents} key={component.id} preview={preview}/>
-          );
-        case 'News List':
-          return (
-            <NewsList configuration={component} documents={documents} key={component.id} preview={preview}/>
-          );
-        case 'org.onehippo.cms7.essentials.components.EssentialsContentComponent':
-          return (
-            <Content configuration={component} documents={documents} key={component.id} preview={preview}/>
-          );
-        default:
-          return (
-            <UndefinedComponent configuration={component} key={component.id} preview={preview}/>
-          );
-      }
+      return (
+        <BaseComponent configuration={component} content={content} key={component.id} preview={preview} />
+      );
     });
   }
 
   render() {
     const configuration = this.props.configuration;
-    const documents = this.props.documents;
+    const content = this.props.content;
     const preview = this.props.preview;
+    let containerMetaData = {};
 
-    // get component meta-data
-    let componentMetaData = {};
+    // get container meta-data
     if (preview && configuration && configuration.cmsData) {
-      componentMetaData = getComponentMetaData(configuration.cmsData);
+      containerMetaData = getComponentMetaData(configuration.cmsData);
     }
 
     return (
       <React.Fragment>
-        { componentMetaData.start }
-        <div className="hst-container">
-          { configuration &&
-          this.renderComponent(configuration, documents, preview)
-          }
-        </div>
-        { componentMetaData.end }
+        { configuration &&
+        this.renderContainer(configuration, containerMetaData, content, preview)
+        }
       </React.Fragment>
     );
   }
