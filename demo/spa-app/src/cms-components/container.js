@@ -43,7 +43,7 @@ export default class CmsContainer extends React.Component {
     }
 
     return (
-      <div>
+      <React.Fragment>
         { componentMetaData.start }
         <div className="hst-container">
           { configuration &&
@@ -51,7 +51,7 @@ export default class CmsContainer extends React.Component {
           }
         </div>
         { componentMetaData.end }
-      </div>
+      </React.Fragment>
     );
   }
 }
