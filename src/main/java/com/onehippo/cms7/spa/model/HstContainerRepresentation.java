@@ -21,6 +21,9 @@ public class HstContainerRepresentation {
     @XmlElement
     private String superType;
 
+    @XmlElement
+    private String label;
+
     @XmlElementWrapper(name = "components")
     private List<HstContainerItemComponentRepresentation> components = new ArrayList<>();
 
@@ -33,6 +36,7 @@ public class HstContainerRepresentation {
         this.name = hstComponentConfiguration.getName();
         final String refNs = hstRequest.getReferenceNamespace();
         this.id = refNs;
+        this.label = hstComponentConfiguration.getLabel();
         this.superType = hstComponentConfiguration.getComponentType().toString();
 
         // only populate CMS data for preview requests
