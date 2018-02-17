@@ -47,9 +47,16 @@ public class ExtendDoBeforeRenderComponent {
 
             initializeDocumentsMap(builder);
 
-            // only set template on page-level
+            // only set certain properties on page-level
             if (componentConfig.getParent() == null && !isComponentRenderingRequest(hstRequest)) {
                 builder.setResourceEntity("pageTemplate", componentConfig.getId());
+                String pageTitle = hstRequest.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().getPageTitle();
+                if (pageTitle != null) {
+                    builder.setResourceEntity("pageTitle", pageTitle);
+                }
+                if (componentConfig.getParameters().size() > 0) {
+                    builder.setResourceEntity("parameters", componentConfig.getParameters());
+                }
             // output containers
             } else if (componentConfig.getComponentType().equals(HstComponentConfiguration.Type.CONTAINER_COMPONENT)) {
                 final HstContainerRepresentation container = new HstContainerRepresentation(
