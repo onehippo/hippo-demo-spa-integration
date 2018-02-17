@@ -14,7 +14,7 @@
   <name>Hippo SPA Integration Addon</name>
   <description>Hippo SPA Integration Addon</description>
   <artifactId>hippo-addon-spa-integration</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3-SNAPSHOT</version>
   <url>http://www.bloomreach.com/</url>
   <inceptionYear>2017</inceptionYear>
 
