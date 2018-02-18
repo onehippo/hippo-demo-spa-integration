@@ -70,7 +70,7 @@
     <junit.version>4.12</junit.version>
     <easymock.version>3.4</easymock.version>
 
-    <hippo-addon-spa-integration.version>1.0.1</hippo-addon-spa-integration.version>
+    <hippo-addon-spa-integration.version>1.0.2</hippo-addon-spa-integration.version>
 
     <development-module-deploy-dir>shared/lib</development-module-deploy-dir>
 
