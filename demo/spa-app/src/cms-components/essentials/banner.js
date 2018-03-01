@@ -3,7 +3,7 @@ import { getImageUrl } from '../../utils/image-url';
 
 export default class Banner extends React.Component {
   render() {
-    const content = this.props.content;
+    const content = this.props.componentContent;
     const editContentButton = this.props.editContentButton;
     const imageUrl = getImageUrl( content.image );
 

@@ -3,8 +3,8 @@ import {parseDate} from "../../utils/date";
 
 export default class NewsItem extends React.Component {
   render () {
-    const content = this.props.content;
-    const contentMap = this.props.contentMap;
+    const content = this.props.componentContent;
+    const contentMap = this.props.content;
     const editContentButton = this.props.editContentButton;
 
     // link is stored inside the document wrapper, so we need to access it via the content-map
@@ -20,10 +20,10 @@ export default class NewsItem extends React.Component {
           <a href={link}>{content.title}</a>
         </h2>
         <p className="blog-post-meta">
-          {document.date &&
+          { content.date &&
             <span className="blog-post-date">{parseDate(content.date)}</span>
           }
-          {document.author &&
+          { content.author &&
             <span className="author"><a href="#pagination">{content.author}</a></span>
           }
         </p>

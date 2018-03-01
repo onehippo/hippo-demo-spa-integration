@@ -5,11 +5,11 @@ import UndefinedComponent from "./undefined";
 import {componentDefinitions} from "../../component-definitions";
 
 export default class ContentComponent extends React.Component {
-  renderComponent(component, content, contentMetaData, contentMap, preview) {
+  renderComponent(component, componentContent, contentMetaData, content, preview) {
     // based on the type of the component, render a different React component
     if (component.type in componentDefinitions && componentDefinitions[component.type].component) {
       // component is defined, so render the actual component
-      const componentEl = React.createElement(componentDefinitions[component.type].component, {content: content, editContentButton: contentMetaData, contentMap: contentMap, preview: preview}, null);;
+      const componentEl = React.createElement(componentDefinitions[component.type].component, {componentContent: componentContent, editContentButton: contentMetaData, content: content, preview: preview}, null);;
       return (componentEl);
     } else {
       // component not defined in component-definitions
@@ -22,9 +22,9 @@ export default class ContentComponent extends React.Component {
   render() {
     const component = this.props.configuration;
     const preview = this.props.preview;
-    const contentMap = this.props.content;
+    const content = this.props.content;
     let documentId = null;
-    let content = null;
+    let componentContent = null;
     let contentMetaData = null;
 
     // return placeholder if no document is set on component
@@ -39,18 +39,18 @@ export default class ContentComponent extends React.Component {
       );
     }
 
-    if (contentMap[documentId] && contentMap[documentId].document) {
-      content = contentMap[documentId].document;
+    if (content[documentId] && content[documentId].document) {
+      componentContent = content[documentId].document;
     }
 
     // get content meta-data
-    if (preview && documentId && contentMap[documentId]) {
-      contentMetaData = getContentMetaData(contentMap[documentId].cmsData);
+    if (preview && documentId && content[documentId]) {
+      contentMetaData = getContentMetaData(content[documentId].cmsData);
     }
 
     return (
       <React.Fragment>
-        { this.renderComponent(component, content, contentMetaData, contentMap, preview) }
+        { this.renderComponent(component, componentContent, contentMetaData, content, preview) }
       </React.Fragment>
     );
   }

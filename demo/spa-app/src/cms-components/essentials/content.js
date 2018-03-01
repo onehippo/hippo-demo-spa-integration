@@ -4,7 +4,7 @@ import { parseDate } from '../../utils/date';
 
 export default class Content extends React.Component {
   render() {
-    const content = this.props.content;
+    const content = this.props.componentContent;
     const editContentButton = this.props.editContentButton;
     const imageUrl = getImageUrl( content.image );
 
