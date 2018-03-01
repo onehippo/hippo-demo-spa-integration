@@ -1,26 +1,29 @@
 import React from 'react';
 import { getComponentMetaData } from '../../utils/cms-meta-data';
 import ContentComponent from './content-component';
-import NewsList from '../essentials/news-list';
 import UndefinedComponent from './undefined';
+import {componentDefinitions} from "../../component-definitions";
 
 export default class BaseComponent extends React.Component {
   renderComponent(component, content, preview) {
     // based on the type of the component, render a different React component
-    switch (component.type) {
-      case 'Banner':
-      case 'org.onehippo.cms7.essentials.components.EssentialsContentComponent':
+    if (component.type in componentDefinitions) {
+      if ("contentComponent" in componentDefinitions[component.type]
+        && componentDefinitions[component.type]["contentComponent"]) {
+        // wrap component in ContentComponent class
         return (
           <ContentComponent configuration={component} content={content} preview={preview} />
         );
-      case 'News List':
-        return (
-          <NewsList configuration={component} content={content} preview={preview} />
-        );
-      default:
-        return (
-          <UndefinedComponent componentType={component.type} />
-        );
+      } else if (componentDefinitions[component.type].component) {
+        // component is defined and does not have to be wrapped in ContentComponent, so render the actual component
+        const componentEl = React.createElement(componentDefinitions[component.type].component, {configuration: component, content: content, preview: preview}, null);
+        return (componentEl);
+      }
+    } else {
+      // component not defined in component-definitions
+      return (
+        <UndefinedComponent componentType={component.type} />
+      );
     }
   }
 

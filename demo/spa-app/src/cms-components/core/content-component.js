@@ -1,31 +1,21 @@
 import React from 'react';
 import { getContentMetaData } from '../../utils/cms-meta-data';
-import Banner from '../essentials/banner';
-import NewsItem from '../essentials/news-item';
-import Content from '../essentials/content';
 import PlaceholderComponent from './placeholder';
 import UndefinedComponent from "./undefined";
+import {componentDefinitions} from "../../component-definitions";
 
 export default class ContentComponent extends React.Component {
   renderComponent(component, content, contentMetaData, contentMap, preview) {
     // based on the type of the component, render a different React component
-    switch ( component.type ) {
-      case 'Banner':
-        return (
-          <Banner content={content} editContentButton={contentMetaData} preview={preview} />
-        );
-      case 'News Item':
-        return (
-          <NewsItem content={content} editContentButton={contentMetaData} contentMap={contentMap} preview={preview} />
-        );
-      case 'org.onehippo.cms7.essentials.components.EssentialsContentComponent':
-        return (
-          <Content content={content} editContentButton={contentMetaData} preview={preview} />
-        );
-      default:
-        return (
-          <UndefinedComponent componentType={component.type} />
-        );
+    if (component.type in componentDefinitions && componentDefinitions[component.type].component) {
+      // component is defined, so render the actual component
+      const componentEl = React.createElement(componentDefinitions[component.type].component, {content: content, editContentButton: contentMetaData, contentMap: contentMap, preview: preview}, null);;
+      return (componentEl);
+    } else {
+      // component not defined in component-definitions
+      return (
+        <UndefinedComponent componentType={component.type} />
+      );
     }
   }
 
