@@ -13,15 +13,15 @@ const requestConfigPost = {
   }
 };
 
-function fetchCmsPage(routerParams) {
-  const url = buildApiUrl(routerParams, null);
+function fetchCmsPage(pathInfo, preview, contextPath) {
+  const url = buildApiUrl(pathInfo, preview, contextPath, null);
   return fetchUrl(url, requestConfigGet);
 }
 
-function fetchComponentUpdate(routerParams, componentId, body) {
+function fetchComponentUpdate(pathInfo, preview, contextPath, componentId, body) {
   let requestConfig = requestConfigPost;
   requestConfig.body = toUrlEncodedFormData(body);
-  const url = buildApiUrl(routerParams, componentId);
+  const url = buildApiUrl(pathInfo, preview, contextPath, componentId);
   return fetchUrl(url, requestConfigPost);
 }
 
@@ -32,18 +32,18 @@ function toUrlEncodedFormData(json) {
     .join('&');
 }
 
-function buildApiUrl(routerParams, componentId) {
+function buildApiUrl(pathInfo, preview, contextPath, componentId) {
   let url = baseUrls.cmsBaseUrl;
   // add api path to URL, and prefix with contextPath and preview-prefix if used
-  if (routerParams.contextPath) {
-    url += '/' + routerParams.contextPath;
+  if (contextPath) {
+    url += '/' + contextPath;
   }
-  if (routerParams.preview) {
-    url += '/' + routerParams.preview;
+  if (preview) {
+    url += '/' + preview;
   }
   url += baseUrls.cmsApiPath;
-  if (routerParams.pathInfo) {
-    url += '/' + routerParams.pathInfo;
+  if (pathInfo) {
+    url += '/' + pathInfo;
   }
   // if component ID is supplied, URL should be a component rendering URL
   if (componentId) {
