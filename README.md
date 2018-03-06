@@ -86,23 +86,54 @@ The demo project is located in the `./demo` folder. Build and install using the 
 
 After startup, access the CMS at `http://localhost:8080/cms` and the site at `http://localhost:8080/site`.
 
-### Installing the SPA / React sample application
- 
-The next step is to install the SPA / React application. This requires you to have the Yarn package manager installed. 
-If you do not have yarn installed, go to the [Yarn website](https://yarnpkg.com).
+The next step is to install and run one of the SPA's. Either follow the instructions for the Angular app or the React 
+app below.
 
-To install the SPA / React application, run the following commands from the `demo` folder:
+### Installing the example Angular application
+
+To install the Angular application you require to have the Node package manager installed. Go to the 
+[Node website](https://www.npmjs.com/get-npm) to download it.
+
+To install the Angular application, run the following commands from the main folder:
 ```bash
-    $ cd spa-app
-    $ yarn install
+    $ cd app-examples/angular
+    $ npm install
     $ npm start
 ```
 
-You will also need to run an additional websockets server, which handles updates of the state of the React application 
-when changes are made to a page in the CMS. Run the following command from the `demo` folder:
+You should now be able to access the Angular app at `http://localhost:3000/site`. Please note that 
+`http://localhost:3000` will not work locally, because you need to pass the context-path of the site through the URL.
+
+When viewing the site in the CMS, you will first have to select `Angular` as the front-end renderer in 
+`Channel Settings` in the Channel Manager of the CMS.
+
+### Installing the example React application
+ 
+To install the React application. This requires you to either have the Node or Yarn package manager 
+installed. If you do not have any of these installed, either go to the [Node website](https://www.npmjs.com/get-npm) or 
+the [Yarn website](https://yarnpkg.com).
+
+To install the React application using Node, run the following commands from the `demo` folder:
 ```bash
-    $ node src/server
+    $ cd spa-app
+    $ npm install
+    $ npm start
 ```
+
+Alternatively, to install the React application using Yarn, run the following commands from the `demo` folder:
+```bash
+    $ cd spa-app
+    $ yarn install
+    $ yarn start
+```
+
+You should now be able to access the React app at `http://localhost:3000/site`. Please note that `http://localhost:3000`
+will not work locally, because you need to pass the context-path of the site through the URL.
+
+When viewing the site in the CMS, you will first have to select `React` as the front-end renderer in 
+`Channel Settings` in the Channel Manager of the CMS.
+
+All done! For those that used the old version of the React app, you no longer need to run a separate WebSockets server.
 
 ## Enabling CORS
 
