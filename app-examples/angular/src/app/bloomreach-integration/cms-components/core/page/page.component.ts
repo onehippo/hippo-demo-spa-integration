@@ -30,7 +30,7 @@ export class PageComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    cmsJavascriptInitialization(this);
+    cmsJavascriptInitialization(window, this);
   }
 
   setBloomreachContext() {

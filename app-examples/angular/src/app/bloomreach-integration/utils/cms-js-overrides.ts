@@ -1,5 +1,5 @@
 // calls and overrides some of the Angular/JS functions of the Hippo Channel Manager
-function cmsJavascriptInitialization (appContext) {
+function cmsJavascriptInitialization (window, appContext) {
   if (window && window.parent && window.parent.angular) {
     const injector = window.parent.angular.element(window.parent.document.body).injector();
     const hstCommentsProcessorService = injector.get("hstCommentsProcessorService");
