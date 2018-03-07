@@ -29,7 +29,11 @@ export class PageComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    cmsJavascriptInitialization(window, this);
+    // quick fix for parsing HTML comments after load; need to hook into proper on-load event
+    setTimeout(() => {
+      cmsJavascriptInitialization(window, this);
+      },
+      500);
   }
 
   setBloomreachContext() {
