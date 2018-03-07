@@ -26,7 +26,6 @@ export class PageComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.setBloomreachContext();
     this.getContainers();
-
   }
 
   ngAfterViewInit() {

@@ -24,13 +24,6 @@ export class ContainerComponent extends CmsMetaDataComponent implements OnInit {
   }
 
   addComments(): void {
-    // const id = +this.route.snapshot.paramMap.get('id');
-    // this.container = "test";
-    // this.contentService.getContent()
-    //   .subscribe(content => {
-    //     this.pageData = content;
-    //     this.components = content.containers[0].components;
-    //     this.container = content.containers[0];
     if (this.container.cmsData && this.container.cmsData.start && this.container.cmsData.end) {
       const cmsDataStart = JSON.stringify(this.container.cmsData.start);
       this.addComment(cmsDataStart, "afterbegin");
