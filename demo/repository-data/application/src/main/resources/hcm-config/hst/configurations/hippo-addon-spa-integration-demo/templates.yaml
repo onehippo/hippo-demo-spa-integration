@@ -4,7 +4,13 @@ definitions:
       jcr:primaryType: hst:templates
       /base-layout:
         jcr:primaryType: hst:template
-        hst:renderpath: webfile:/freemarker/hippoaddonspaintegrationdemo/spa-base-layout.ftl
+        hst:renderpath: webfile:/freemarker/hippoaddonspaintegrationdemo/base-layout.ftl
+      /react-base-layout:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/freemarker/hippoaddonspaintegrationdemo/react-base-layout.ftl
+      /angular-base-layout:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/freemarker/hippoaddonspaintegrationdemo/angular-base-layout.ftl
       /base-top-menu:
         jcr:primaryType: hst:template
         hst:renderpath: webfile:/freemarker/hippoaddonspaintegrationdemo/base-top-menu.ftl

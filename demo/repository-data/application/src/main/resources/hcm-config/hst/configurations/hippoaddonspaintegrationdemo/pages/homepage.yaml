@@ -6,6 +6,7 @@ definitions:
       /main:
         jcr:primaryType: hst:component
         hst:template: homepage-main
+        hst:suppresswastemessage: true
         /container:
           jcr:primaryType: hst:containercomponentreference
           hst:referencecomponent: homepage/main

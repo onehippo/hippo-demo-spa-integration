@@ -8,14 +8,14 @@
     <meta name="description" content="Sample React App showcasing BloomReach Experience integration">
     <meta name="author" content="Robbert Kauffman, Solution Consultant, BloomReach">
 
-    <title>React App</title>
+    <title>Example Angular App</title>
+    <base href="/">
 
-    <link rel="stylesheet" href="${baseUrl}/css/bootstrap.min.css" media="screen">
-    <link rel="stylesheet" href="${baseUrl}/css/carousel.css">
-    <link rel="stylesheet" href="${baseUrl}/css/custom.css" media="screen">
+    <link rel="stylesheet" href="${baseUrl}/assets/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="${baseUrl}/assets/css/carousel.css">
+    <link rel="stylesheet" href="${baseUrl}/assets/css/custom.css" media="screen">
 
-    <link rel="manifest" href="${baseUrl}/manifest.json">
-    <link rel="shortcut icon" href="${baseUrl}/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="${baseUrl}/favicon.ico">
 
   </head>
   <body>
@@ -24,7 +24,7 @@
     </noscript>
     <div id="header">
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">SPA Demo</a>
+        <a class="navbar-brand" href="#">Angular Demo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -41,13 +41,18 @@
       </nav>
     </div>
     <div class="container marketing" id="root">
+      <app-root></app-root>
     </div>
     <footer>
       <p>&copy; 2017 BloomReach, Inc.</p>
     </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
-    <script src="${baseUrl}/js/popper.min.js"></script>
-    <script src="${baseUrl}/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${baseUrl}/static/js/bundle.js"></script></body>
+    <script>window.jQuery || document.write('<script src="/assets/js/jquery.min.js"><\/script>')</script>
+    <script src="${baseUrl}/assets/js/popper.min.js"></script>
+    <script src="${baseUrl}/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${baseUrl}/inline.bundle.js"></script>
+    <script type="text/javascript" src="${baseUrl}/polyfills.bundle.js"></script>
+    <script type="text/javascript" src="${baseUrl}/styles.bundle.js"></script>
+    <script type="text/javascript" src="${baseUrl}/vendor.bundle.js"></script>
+    <script type="text/javascript" src="${baseUrl}/main.bundle.js"></script>
 </html>
