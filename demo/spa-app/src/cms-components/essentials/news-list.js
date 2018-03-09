@@ -18,15 +18,19 @@ export default class NewsList extends React.Component {
 
     // build list of news articles
     const listItems = list.map((listItem, index) => {
+      // check if list is a map
       if (configuration && typeof configuration === 'object' && configuration.constructor === Object) {
-        // change type as we want to render the NewsItem component
-        configuration.type = 'News Item';
+        // since we’re wrapping the NewsItem component in the ContentComponent class,
+        // we need to pass the type of the component through the component configuration
+        const newsItemConfig = { type: 'News Item'};
+        // wrap the NewsItem component in ContentComponent class to enable in-context editing
+        return (
+          <ContentComponent configuration={newsItemConfig} content={content} preview={preview} documentId={listItem} key={index} />
+        );
       } else {
         console.log('NewsList component configuration is not a map, unexpected format of configuration');
+        return ('Error! NewsList component configuration is not a map, unexpected format of configuration')
       }
-      return (
-        <ContentComponent configuration={configuration} content={content} preview={preview} documentId={listItem} key={index} />
-      );
     });
 
     return (
