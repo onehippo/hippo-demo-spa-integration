@@ -9,12 +9,14 @@ export default class ContentComponent extends React.Component {
     // based on the type of the component, render a different React component
     if (component.type in componentDefinitions && componentDefinitions[component.type].component) {
       // component is defined, so render the actual component
-      const componentEl = React.createElement(componentDefinitions[component.type].component, {componentContent: componentContent, editContentButton: contentMetaData, content: content, preview: preview}, null);;
+      const componentEl = React.createElement(componentDefinitions[component.type].component,
+        { componentContent: componentContent, editContentButton: contentMetaData, content: content, preview: preview },
+        null);
       return (componentEl);
     } else {
       // component not defined in component-definitions
       return (
-        <UndefinedComponent componentType={component.type} />
+        <UndefinedComponent componentType={component.type}/>
       );
     }
   }
@@ -33,10 +35,13 @@ export default class ContentComponent extends React.Component {
     } else if (this.props.documentId) {
       // NewsList component passed document ID through property instead of via reference in attributes map
       documentId = this.props.documentId;
-    } else {
+    } else if (preview) {
       return (
         <PlaceholderComponent componentType={component.type} />
       );
+    } else {
+      // don't render placeholder outside of preview mode
+      return null;
     }
 
     if (content[documentId] && content[documentId].document) {

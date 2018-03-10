@@ -4,32 +4,35 @@ import ContentComponent from '../core/content-component';
 
 export default class NewsList extends React.Component {
   render() {
-    const list = this.props.configuration.attributes.pageable.items;
     const preview = this.props.preview;
     const content = this.props.content;
-    let configuration = this.props.configuration;
+    const configuration = this.props.configuration;
 
     // return placeholder if no list is set on component
-    if (list.length === 0) {
+    let list = undefined;
+    if (configuration.attributes.pageable && configuration.attributes.pageable.items
+      && configuration.attributes.pageable.items.length !== 0) {
+      list = configuration.attributes.pageable.items;
+    } else if (preview) {
       return (
-        <Placeholder componentType={this.props.configuration.type} />
+        <Placeholder componentType={configuration.type} />
       );
+    } else {
+      // don't render placeholder outside of preview mode
+      return null;
     }
 
     // build list of news articles
     const listItems = list.map((listItem, index) => {
-      // check if list is a map
       if (configuration && typeof configuration === 'object' && configuration.constructor === Object) {
-        // since we’re wrapping the NewsItem component in the ContentComponent class,
-        // we need to pass the type of the component through the component configuration
-        const newsItemConfig = { type: 'News Item'};
-        // wrap the NewsItem component in ContentComponent class to enable in-context editing
+        // change type as we want to render the NewsItem component
+        const newsItemConfig = { type: 'News Item' };
         return (
           <ContentComponent configuration={newsItemConfig} content={content} preview={preview} documentId={listItem} key={index} />
         );
       } else {
         console.log('NewsList component configuration is not a map, unexpected format of configuration');
-        return ('Error! NewsList component configuration is not a map, unexpected format of configuration')
+        return null;
       }
     });
 
