@@ -153,7 +153,7 @@ You can add CORS supporting response headers by adding the following in
       <list>
         <bean class="org.hippoecm.hst.util.DefaultKeyValue">
           <constructor-arg value="Access-Control-Allow-Origin" />
-          <constructor-arg value="*" />
+          <constructor-arg value="http://localhost:3000" />
         </bean>
       </list>
     </property>
