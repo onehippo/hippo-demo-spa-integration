@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   description: "API for integrating an SPA with Hippo CMS / BloomReach Experience, while retaining all CMS authoring capabilities such as integrated preview, in-context editing, drag & drop, and personalization."
-  version: "1.0.2"
+  version: "1.0.3"
   title: "Hippo SPA Integration Addon"
   termsOfService: "https://www.onehippo.org/library/about/license-and-notice-files.html"
   contact:
@@ -220,17 +220,41 @@ definitions:
     type: "string"
     description: "type of the page"
     example: "hst:pages/homepage"
+  pageTitle:
+    type: "string"
+    description: "title of the page"
+    example: "Homepage"
+  parameters:
+    type: "object"
+    description: "map of page parameters"
+    example:
+      cssClass: "home"
+    additionalProperties:
+      type: "string"
   ApiResponse:
     type: "object"
     required: ["pageTemplate"]
     properties:
       pageTemplate:
         $ref: "#/definitions/pageTemplate"
+      pageTitle:
+        $ref: "#/definitions/pageTitle"
+      parameters:
+        $ref: "#/definitions/parameters"
       containers:
         $ref: "#/definitions/containers"
       documents:
         $ref: "#/definitions/documents"
-  Error:
+  Error404:
+    required: ["code", "message"]
+    properties:
+      code:
+        type: "number"
+        example: "400"
+      message:
+        type: "string"
+        example: "Page not found"
+  Error500:
     required: ["code", "message"]
     properties:
       code:
@@ -238,7 +262,7 @@ definitions:
         example: "500"
       message:
         type: "string"
-        example: "An unexpected error occured."
+        example: "An unexpected error occured"
 parameters:
   pagePath:
     name: "pagePath"
@@ -250,11 +274,11 @@ responses:
   404ErrorResponse:
     description: "Page not found"
     schema:
-      $ref: "#/definitions/Error"
+      $ref: "#/definitions/Error404"
   500ErrorResponse:
-    description: "An unexpected error occured."
+    description: "An unexpected error occured"
     schema:
-      $ref: "#/definitions/Error"
+      $ref: "#/definitions/Error500"
 externalDocs:
   description: "Find out more about Swagger"
   url: "http://swagger.io"
