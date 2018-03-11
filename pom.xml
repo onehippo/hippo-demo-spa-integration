@@ -25,7 +25,7 @@
     <hippo.repository.version>5.0.2</hippo.repository.version>
     <hippo.hst.version>5.0.2</hippo.hst.version>
     <hippo.essentials-components.version>4.0.2</hippo.essentials-components.version>
-    <hippo-addon-generic-resource-entity-builder.version>1.0.2</hippo-addon-generic-resource-entity-builder.version>
+    <hippo-addon-generic-resource-entity-builder.version>1.0.1</hippo-addon-generic-resource-entity-builder.version>
 
   </properties>
 
