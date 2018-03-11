@@ -13,9 +13,14 @@ generating API responses.
  
 For release processes, see [Hippo Forge Release Process](https://onehippo-forge.github.io/release-process.html).
 
-## Adding the module to an existing project
+## Add the module to an existing project
 
-Add the following dependency to your root pom.xml:
+Please note that this module is **only supported for BloomReach Experience**. When trying to
+add this module to a Hippo CMS Community Edition project you will not be able to build the project due to the 
+dependencies not resolving. If you would like to get BloomReach Experience, please contact [sales@bloomreach.com](mailto:sales@bloomreach.com) 
+or read more on [Get BloomReach Experience Developer Accounts](https://www.onehippo.org/about/get-bloomreach-experience-developer-accounts.html). 
+
+To add the module, add the following dependency to your root pom.xml:
 ```mvn
     <properties>
         ...
@@ -53,7 +58,7 @@ module of your project. For example:
     $ cp src/main/resources/META-INF/hst-assembly/overrides/extend-do-before-render.xml PATH_TO_YOUR_PROJECT/site/src/main/resources/META-INF/hst-assembly/overrides
 ```
 
-### Enabling API through mount configuration
+### Enable API through mount configuration
 
 To enable the API, you will have to configure an additional mount in the hosts configuration of your project.
 
@@ -75,7 +80,7 @@ an example.
 In case you want to customize the API response, you can either fork the project or copy all the classes and resources of 
 the `src` folder to the site module of your project. Make sure to also copy over the dependencies from the pom.xml.
 
-## Running the demo
+## Run the demo
 
 The demo project is located in the `./demo` folder. Build and install using the regular commands:
 ```bash
@@ -89,7 +94,7 @@ After startup, access the CMS at `http://localhost:8080/cms` and the site at `ht
 The next step is to install and run one of the SPA's. Either follow the instructions for the Angular app or the React 
 app below.
 
-### Installing the example Angular application
+### Install the example Angular application
 
 To install the Angular application you require to have the Node package manager installed. Go to the 
 [Node website](https://www.npmjs.com/get-npm) to download it.
@@ -107,7 +112,7 @@ You should now be able to access the Angular app at `http://localhost:3000/site`
 When viewing the site in the CMS, you will first have to select `Angular` as the front-end renderer in 
 `Channel Settings` in the Channel Manager of the CMS.
 
-### Installing the example React application
+### Install the example React application
  
 To install the React application. This requires you to either have the Node or Yarn package manager 
 installed. If you do not have any of these installed, either go to the [Node website](https://www.npmjs.com/get-npm) or 
@@ -135,7 +140,7 @@ When viewing the site in the CMS, you will first have to select `React` as the f
 
 All done! For those that used the old version of the React app, you no longer need to run a separate WebSockets server.
 
-## Enabling CORS
+## Enable CORS
 
 You can add CORS supporting response headers by adding the following in 
 `site/src/main/resources/META-INF/hst-assembly/overrides/addon/com/onehippo/cms7/genericresource/entitybuilder/cors.xml` 
@@ -162,7 +167,7 @@ You can add CORS supporting response headers by adding the following in
 </beans>
 ```
 
-## Using the API
+## API Usage
 
 You can access the API by requesting any regular site URL and prefixing it with the mount URL that has been setup in 
 `Adding the module to your project`.
