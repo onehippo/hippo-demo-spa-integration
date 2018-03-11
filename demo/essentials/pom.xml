@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.onehippo.cms7.demo</groupId>
     <artifactId>hippo-addon-spa-integration-demo</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
   </parent>
   <artifactId>hippo-addon-spa-integration-demo-essentials</artifactId>
   <packaging>war</packaging>
