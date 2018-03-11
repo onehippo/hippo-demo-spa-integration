@@ -105,6 +105,10 @@ definitions:
         type: "string"
         description: "reference namespace of container"
         example: "r4_r1_r1"
+      label:
+        type: "string"
+        description: "label of container"
+        example: "Home Page Main"
       components:
         $ref: "#/definitions/components"
       cmsData:
