@@ -115,14 +115,14 @@ the [Yarn website](https://yarnpkg.com).
 
 To install the React application using Node, run the following commands from the `demo` folder:
 ```bash
-    $ cd spa-app
+    $ cd app-examples/react
     $ npm install
     $ npm start
 ```
 
 Alternatively, to install the React application using Yarn, run the following commands from the `demo` folder:
 ```bash
-    $ cd spa-app
+    $ cd app-examples/react
     $ yarn install
     $ yarn start
 ```
