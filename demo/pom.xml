@@ -12,7 +12,7 @@
   <description>Hippo Addon SPA Integration Demo</description>
   <groupId>com.onehippo.cms7.demo</groupId>
   <artifactId>hippo-addon-spa-integration-demo</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <!-- 
