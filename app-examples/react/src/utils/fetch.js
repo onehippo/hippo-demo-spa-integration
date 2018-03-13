@@ -13,15 +13,15 @@ const requestConfigPost = {
   }
 };
 
-function fetchCmsPage(pathInfo, preview, contextPath) {
-  const url = buildApiUrl(pathInfo, preview, contextPath, null);
+function fetchCmsPage(pathInfo, previewPrefix) {
+  const url = buildApiUrl(pathInfo, previewPrefix, null);
   return fetchUrl(url, requestConfigGet);
 }
 
-function fetchComponentUpdate(pathInfo, preview, contextPath, componentId, body) {
+function fetchComponentUpdate(pathInfo, previewPrefix, componentId, body) {
   let requestConfig = requestConfigPost;
   requestConfig.body = toUrlEncodedFormData(body);
-  const url = buildApiUrl(pathInfo, preview, contextPath, componentId);
+  const url = buildApiUrl(pathInfo, previewPrefix, componentId);
   return fetchUrl(url, requestConfigPost);
 }
 
@@ -32,16 +32,19 @@ function toUrlEncodedFormData(json) {
     .join('&');
 }
 
-function buildApiUrl(pathInfo, preview, contextPath, componentId) {
+function buildApiUrl(pathInfo, previewPrefix, componentId) {
   let url = baseUrls.cmsBaseUrl;
   // add api path to URL, and prefix with contextPath and preview-prefix if used
-  if (contextPath) {
-    url += '/' + contextPath;
+  if (baseUrls.cmsContextPath !== '') {
+    url += '/' + baseUrls.cmsContextPath;
   }
-  if (preview) {
-    url += '/' + preview;
+  if (previewPrefix) {
+    url += '/' + previewPrefix;
   }
-  url += baseUrls.cmsApiPath;
+  if (baseUrls.cmsChannelPath  !== '') {
+    url += '/' + baseUrls.cmsChannelPath;
+  }
+  url += '/' + baseUrls.cmsApiPath;
   if (pathInfo) {
     url += '/' + pathInfo;
   }

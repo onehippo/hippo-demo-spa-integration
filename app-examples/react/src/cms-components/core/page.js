@@ -22,7 +22,7 @@ export default class CmsPage extends React.Component {
         const componentToUpdate = findChildById(this.state.pageStructure, componentId);
         if (componentToUpdate !== undefined) {
           // fetch updated component from the API
-          fetchComponentUpdate(this.props.pathInfo, this.props.preview, this.props.contextPath, componentId, propertiesMap).then(response => {
+          fetchComponentUpdate(this.props.pathInfo, this.props.preview, componentId, propertiesMap).then(response => {
             // API can return empty response when component is deleted
             if (response) {
               // API can return either a single component or single container
@@ -59,7 +59,7 @@ export default class CmsPage extends React.Component {
   }
 
   componentDidMount() {
-    fetchCmsPage(this.props.pathInfo, this.props.preview, this.props.contextPath).then(data => {
+    fetchCmsPage(this.props.pathInfo, this.props.preview).then(data => {
       this.setState({
         pageStructure: data
       });
