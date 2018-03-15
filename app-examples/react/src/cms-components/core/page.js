@@ -2,6 +2,7 @@ import React from 'react';
 import { fetchCmsPage, fetchComponentUpdate } from '../../utils/fetch';
 import { cmsJavascriptInitialization } from '../../utils/cms-js-overrides';
 import { findChildById } from '../../utils/find-child-by-id';
+import CmsComponent from './component';
 import CmsContainer from './container';
 
 export default class CmsPage extends React.Component {
@@ -33,14 +34,14 @@ export default class CmsPage extends React.Component {
               }
               // update documents by merging with original documents map
               if (response.documents) {
-                let documents = this.state.pageStructure.documents; // eslint-disable-line
+                let documents = this.state.pageModel.documents; // eslint-disable-line
                 // ignore error on next line, as variable is a reference to a sub-object of pageStructure
                 // and will be used when pageStructure is updated/set
                 documents = Object.assign(documents, response.documents);
               }
               // update the page structure after the component/container has been updated
               this.setState({
-                pageStructure: this.state.pageStructure
+                pageModel: this.state.pageModel
               });
             }
           });
@@ -61,28 +62,25 @@ export default class CmsPage extends React.Component {
   componentDidMount() {
     fetchCmsPage(this.props.pathInfo, this.props.preview).then(data => {
       this.setState({
-        pageStructure: data
+        pageModel: data
       });
     });
   }
 
   render() {
-    const pageStructure = this.state.pageStructure;
+    const pageModel = this.state.pageModel;
     const preview = this.props.preview;
 
-    let containers = null;
-    if (pageStructure && pageStructure.containers) {
-      const content = pageStructure.documents;
-      containers = pageStructure.containers.map(container => {
-        return (<CmsContainer configuration={container} content={content} preview={preview} key={container.id}/>);
-      });
+    if (!pageModel || !pageModel.page) {
+      return null;
     }
 
     return (
       <div>
-        { pageStructure &&
-        containers
-        }
+        <CmsComponent configuration={pageModel.page} pageModel={pageModel} preview={preview} />
+
+        {/*rendering a specific container:*/}
+        {/*<CmsContainer path='main/container' pageModel={pageModel} preview={preview} />*/}
       </div>
     );
   }

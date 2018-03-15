@@ -5,7 +5,7 @@ export default class Placeholder extends React.Component {
   // this is the case when a new component is added to a container
   render() {
     return (
-      <p>Click to configure { this.props.componentType }</p>
+      <p>Click to configure { this.props.name }</p>
     );
   }
 }

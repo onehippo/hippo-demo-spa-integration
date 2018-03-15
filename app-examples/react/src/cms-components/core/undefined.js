@@ -5,7 +5,7 @@ export default class UndefinedComponent extends React.Component {
   render() {
     return (
       <p>
-        Component { this.props.componentType } <strong>not defined</strong>
+        Component { this.props.name } <strong>not defined</strong>
       </p>
     );
   }

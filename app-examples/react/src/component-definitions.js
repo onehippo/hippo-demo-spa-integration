@@ -5,7 +5,7 @@ import NewsItem from './cms-components/essentials/news-item';
 
 const componentDefinitions = {
   "Banner": { component: Banner, contentComponent: true },
-  "org.onehippo.cms7.essentials.components.EssentialsContentComponent": { component: Content, contentComponent: true },
+  "Content": { component: Content, contentComponent: true },
   "News List": { component: NewsList },
   "News Item": { component: NewsItem, contentComponent: true }
 }

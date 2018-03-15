@@ -1,18 +1,18 @@
 import React from 'react';
 import Placeholder from '../core/placeholder';
-import ContentComponent from '../core/content-component';
+import ContentComponentWrapper from '../core/content-component-wrapper';
 
 export default class NewsList extends React.Component {
   render() {
     const preview = this.props.preview;
-    const content = this.props.content;
+    const pageModel = this.props.pageModel;
     const configuration = this.props.configuration;
 
     // return placeholder if no list is set on component
     let list = undefined;
-    if (configuration.attributes.pageable && configuration.attributes.pageable.items
-      && configuration.attributes.pageable.items.length !== 0) {
-      list = configuration.attributes.pageable.items;
+    if (configuration && configuration.models && configuration.models.pageable && configuration.models.pageable.items
+      && configuration.models.pageable.items.length !== 0) {
+      list = configuration.models.pageable.items;
     } else if (preview) {
       return (
         <Placeholder componentType={configuration.type} />
@@ -26,9 +26,11 @@ export default class NewsList extends React.Component {
     const listItems = list.map((listItem, index) => {
       if (configuration && typeof configuration === 'object' && configuration.constructor === Object) {
         // change type as we want to render the NewsItem component
-        const newsItemConfig = { type: 'News Item' };
+        const newsItemConfig = { label: 'News Item' };
+        // TODO: get $ref fom listItem once list serialization is fixed
         return (
-          <ContentComponent configuration={newsItemConfig} content={content} preview={preview} documentId={listItem} key={index} />
+          <ContentComponentWrapper documentUuid={listItem} configuration={newsItemConfig} pageModel={pageModel}
+                                   preview={preview} key={index} />
         );
       } else {
         console.log('NewsList component configuration is not a map, unexpected format of configuration');
