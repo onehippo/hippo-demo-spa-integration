@@ -26,16 +26,16 @@ export default class NewsList extends React.Component {
     const listItems = list.map((listItem, index) => {
       if (configuration && typeof configuration === 'object' && configuration.constructor === Object) {
         // change type as we want to render the NewsItem component
-        const newsItemConfig = { label: 'News Item' };
-        // TODO: get $ref fom listItem once list serialization is fixed
-        return (
-          <ContentComponentWrapper documentUuid={listItem} configuration={newsItemConfig} pageModel={pageModel}
-                                   preview={preview} key={index} />
-        );
-      } else {
-        console.log('NewsList component configuration is not a map, unexpected format of configuration');
-        return null;
+        const newsItemConfig = {label: 'News Item'};
+        if ('$ref' in listItem) {
+          return (
+            <ContentComponentWrapper documentUuid={listItem.$ref} configuration={newsItemConfig} pageModel={pageModel}
+                                     preview={preview} key={index}/>
+          );
+        }
       }
+      console.log('NewsList component configuration is not a map, unexpected format of configuration');
+      return null;
     });
 
     return (
