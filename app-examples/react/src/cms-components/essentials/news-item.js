@@ -7,8 +7,8 @@ export default class NewsItem extends React.Component {
     const editContentButton = this.props.editContentButton;
 
     let link;
-    if (content._links && content._links.self) {
-      link = content._links.self;
+    if (content._links && content._links.site) {
+      link = content._links.site;
     }
 
     return (
