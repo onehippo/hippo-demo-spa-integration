@@ -1,8 +1,8 @@
 // returns parent and index of child referenced by ID,
 // so that we can easily replace the child
 function findChildById(object, id, parent, idx) {
-  var result;
-  for(var prop in object) {
+  let result;
+  for(let prop in object) {
     if(object.hasOwnProperty(prop)) {
       if(typeof object[prop] === "object") {
         result = findChildById(object[prop], id, object, prop);
