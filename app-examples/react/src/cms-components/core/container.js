@@ -9,7 +9,8 @@ export default class CmsContainer extends React.Component {
       default:
         return (
           <React.Fragment>
-            <div className="hst-container">
+            <div className="hst-container"
+                 ref={(containerElm) => { this.addComments(containerElm, configuration, preview); }}>
               { this.renderContainer(configuration, pageModel, preview) }
             </div>
           </React.Fragment>
@@ -25,6 +26,14 @@ export default class CmsContainer extends React.Component {
           <CmsContainerItem configuration={component} pageModel={pageModel} preview={preview} key={component.id}/>
         );
       });
+    }
+  }
+
+  addComments(htmlElm, configuration, preview) {
+    if (preview && htmlElm && configuration && configuration._meta &&
+      configuration._meta.beginNodeSpan && configuration._meta.beginNodeSpan.data) {
+      htmlElm.insertAdjacentHTML("beforebegin", configuration._meta.beginNodeSpan.data);
+      htmlElm.insertAdjacentHTML("afterend", configuration._meta.endNodeSpan.data);
     }
   }
 
@@ -74,12 +83,6 @@ export default class CmsContainer extends React.Component {
     }
 
     const preview = this.props.preview;
-
-    // let containerMetaData = {};
-    // get container meta-data
-    // if (preview && configuration && configuration.cmsData) {
-    //   containerMetaData = getComponentMetaData(configuration.cmsData);
-    // }
 
     return (
       <React.Fragment>

@@ -20,24 +20,23 @@ export default class CmsPage extends React.Component {
       if (component && component.metaData && component.metaData.refNS) {
         const componentId = component.metaData.refNS;
         // find the component that needs to be updated in the page structure object using its ID
-        const componentToUpdate = findChildById(this.state.pageStructure, componentId);
+        const componentToUpdate = findChildById(this.state.pageModel, componentId);
         if (componentToUpdate !== undefined) {
           // fetch updated component from the API
           fetchComponentUpdate(this.props.pathInfo, this.props.preview, componentId, propertiesMap).then(response => {
             // API can return empty response when component is deleted
             if (response) {
               // API can return either a single component or single container
-              if (response.component) {
-                componentToUpdate.parent[componentToUpdate.idx] = response.component;
-              } else if (response.container) {
-                componentToUpdate.parent[componentToUpdate.idx] = response.container;
+              if (response.page) {
+                console.log(response.page);
+                componentToUpdate.parent[componentToUpdate.idx] = response.page;
               }
               // update documents by merging with original documents map
-              if (response.documents) {
-                let documents = this.state.pageModel.documents; // eslint-disable-line
-                // ignore error on next line, as variable is a reference to a sub-object of pageStructure
-                // and will be used when pageStructure is updated/set
-                documents = Object.assign(documents, response.documents);
+              if (response.content) {
+                let content = this.state.pageModel.content; // eslint-disable-line
+                // ignore error on next line, as variable is a reference to a sub-object of pageModel
+                // and will be used when pageModel is updated/set
+                content = Object.assign(content, response.content);
               }
               // update the page structure after the component/container has been updated
               this.setState({

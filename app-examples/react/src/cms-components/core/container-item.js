@@ -27,13 +27,22 @@ export default class CmsContainerItem extends React.Component {
     }
   }
 
+  addComments(htmlElm, configuration, preview) {
+    if (preview && htmlElm && configuration && configuration._meta &&
+      configuration._meta.beginNodeSpan && configuration._meta.beginNodeSpan.data) {
+      htmlElm.insertAdjacentHTML("afterbegin", configuration._meta.beginNodeSpan.data);
+      htmlElm.insertAdjacentHTML("beforeend", configuration._meta.endNodeSpan.data);
+    }
+  }
+
   render() {
     const configuration = this.props.configuration;
     const pageModel = this.props.pageModel;
     const preview = this.props.preview;
 
     return (
-      <div className="hst-container-item">
+      <div className="hst-container-item"
+           ref={(containerItemElm) => { this.addComments(containerItemElm, configuration, preview); }}>
         { configuration &&
           this.renderContainerItem(configuration, pageModel, preview)
         }

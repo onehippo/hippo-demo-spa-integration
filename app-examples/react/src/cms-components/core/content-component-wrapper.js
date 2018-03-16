@@ -1,16 +1,17 @@
 import React from 'react';
 import PlaceholderComponent from './placeholder';
 import UndefinedComponent from "./undefined";
+import EditContent from "./edit-content";
 import { componentDefinitions } from "../../component-definitions";
 import jsonpointer from 'jsonpointer';
 
 export default class ContentComponentWrapper extends React.Component {
-  renderContentComponentWrapper(component, content, preview) {
+  renderContentComponentWrapper(component, content, preview, editContentButton) {
     // based on the type of the component, render a different React component
     if (component.label in componentDefinitions && componentDefinitions[component.label].component) {
       // component is defined, so render the component
       const componentEl = React.createElement(componentDefinitions[component.label].component,
-        { content: content, preview: preview }, null);
+        { content: content, preview: preview, editContentButton: editContentButton }, null);
       return (componentEl);
     } else {
       // component not defined in component-definitions
@@ -37,9 +38,6 @@ export default class ContentComponentWrapper extends React.Component {
 
     if (documentUuid && (typeof documentUuid === 'string' || documentUuid instanceof String)) {
       content = jsonpointer.get(pageModel, documentUuid);
-    } else if (documentUuid) {
-      // TODO: news list sets UUID instead of serialized content-item once list serialization is fixed
-      content = documentUuid;
     }
 
     if (!content && preview) {
@@ -52,9 +50,12 @@ export default class ContentComponentWrapper extends React.Component {
       return null;
     }
 
+    // create edit content button and pass as a prop
+    const editContentButton = React.createElement(EditContent, { content: content, preview: preview }, null);
+
     return (
       <React.Fragment>
-        { this.renderContentComponentWrapper(configuration, content, preview) }
+        { this.renderContentComponentWrapper(configuration, content, preview, editContentButton) }
       </React.Fragment>
     );
   }
