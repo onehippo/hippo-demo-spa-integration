@@ -7,8 +7,8 @@ export default class Content extends React.Component {
     const editContentButton = this.props.editContentButton;
 
     let image;
-    if (content.image && content.image._links && content.image._links.self) {
-      image = content.image._links.self;
+    if (content.image && content.image._links && content.image._links.site) {
+      image = content.image._links.site;
     }
 
     return (
