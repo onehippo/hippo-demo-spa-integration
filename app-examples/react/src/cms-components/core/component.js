@@ -1,5 +1,6 @@
 import React from 'react';
 import CmsContainer from './container';
+import { getConfigurationForPath } from '../../utils/get-configuration-for-path';
 
 export default class CmsComponent extends React.Component {
   renderComponentWrapper(configuration, pageModel, preview) {
@@ -35,9 +36,16 @@ export default class CmsComponent extends React.Component {
   }
 
   render() {
-    const configuration = this.props.configuration;
     const pageModel = this.props.pageModel;
     const preview = this.props.preview;
+
+    let configuration;
+    // if no path is set, use supplied container configuration
+    if (!this.props.path) {
+      configuration = this.props.configuration;
+    } else {
+      configuration = getConfigurationForPath(this.props.path, pageModel);
+    }
 
     return (
       <React.Fragment>

@@ -87,12 +87,12 @@ export default class CmsPage extends React.Component {
     }
 
     return (
-      <div>
+      <React.Fragment>
         <CmsComponent configuration={pageModel.page} pageModel={pageModel} preview={preview} />
 
         {/*rendering a specific container:*/}
         {/*<CmsContainer path='main/container' pageModel={pageModel} preview={preview} />*/}
-      </div>
+      </React.Fragment>
     );
   }
 }
