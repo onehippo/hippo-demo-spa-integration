@@ -1,17 +1,17 @@
 import React from 'react';
 import PlaceholderComponent from './placeholder';
 import UndefinedComponent from "./undefined";
-import EditContent from "./edit-content";
+import ManageContentButton from "./manage-content-button";
 import { componentDefinitions } from "../../component-definitions";
 import jsonpointer from 'jsonpointer';
 
 export default class ContentComponentWrapper extends React.Component {
-  renderContentComponentWrapper(component, content, preview, editContentButton) {
+  renderContentComponentWrapper(component, content, preview, manageContentButton) {
     // based on the type of the component, render a different React component
     if (component.label in componentDefinitions && componentDefinitions[component.label].component) {
       // component is defined, so render the component
       const componentEl = React.createElement(componentDefinitions[component.label].component,
-        { content: content, preview: preview, editContentButton: editContentButton }, null);
+        { content: content, preview: preview, manageContentButton: manageContentButton }, null);
       return (componentEl);
     } else {
       // component not defined in component-definitions
@@ -51,11 +51,11 @@ export default class ContentComponentWrapper extends React.Component {
     }
 
     // create edit content button and pass as a prop
-    const editContentButton = React.createElement(EditContent, { content: content, preview: preview }, null);
+    const manageContentButton = React.createElement(ManageContentButton, { content: content, preview: preview }, null);
 
     return (
       <React.Fragment>
-        { this.renderContentComponentWrapper(configuration, content, preview, editContentButton) }
+        { this.renderContentComponentWrapper(configuration, content, preview, manageContentButton) }
       </React.Fragment>
     );
   }

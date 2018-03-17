@@ -2,6 +2,7 @@ import React from 'react';
 import ContentComponentWrapper from './content-component-wrapper';
 import UndefinedComponent from './undefined';
 import { componentDefinitions } from "../../component-definitions";
+import { addBeginComment, addEndComment } from '../../utils/add-html-comment';
 
 export default class CmsContainerItem extends React.Component {
   renderContainerItem(component, pageModel, preview) {
@@ -27,12 +28,9 @@ export default class CmsContainerItem extends React.Component {
     }
   }
 
-  addComments(htmlElm, configuration, preview) {
-    if (preview && htmlElm && configuration && configuration._meta &&
-      configuration._meta.beginNodeSpan && configuration._meta.beginNodeSpan.data) {
-      htmlElm.insertAdjacentHTML("afterbegin", configuration._meta.beginNodeSpan.data);
-      htmlElm.insertAdjacentHTML("beforeend", configuration._meta.endNodeSpan.data);
-    }
+  addMetaData(htmlElm, configuration, preview) {
+    addBeginComment(htmlElm, 'afterbegin', configuration, preview);
+    addEndComment(htmlElm, 'beforeend', configuration, preview);
   }
 
   render() {
@@ -42,7 +40,7 @@ export default class CmsContainerItem extends React.Component {
 
     return (
       <div className="hst-container-item"
-           ref={(containerItemElm) => { this.addComments(containerItemElm, configuration, preview); }}>
+           ref={(containerItemElm) => { this.addMetaData(containerItemElm, configuration, preview); }}>
         { configuration &&
           this.renderContainerItem(configuration, pageModel, preview)
         }

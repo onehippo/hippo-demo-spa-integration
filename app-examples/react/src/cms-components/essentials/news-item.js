@@ -4,7 +4,7 @@ import {parseDate} from "../../utils/date";
 export default class NewsItem extends React.Component {
   render () {
     const content = this.props.content;
-    const editContentButton = this.props.editContentButton;
+    const manageContentButton = this.props.manageContentButton;
 
     let link;
     if (content._links && content._links.site) {
@@ -13,7 +13,7 @@ export default class NewsItem extends React.Component {
 
     return (
       <div className="blog-post has-edit-button">
-        { editContentButton && editContentButton }
+        { manageContentButton && manageContentButton }
         <h2 className="blog-post-title">
           <a href={link}>{content.title}</a>
         </h2>

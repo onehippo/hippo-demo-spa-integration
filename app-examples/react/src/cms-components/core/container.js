@@ -1,5 +1,6 @@
 import React from 'react';
 import CmsContainerItem from './container-item';
+import { addBeginComment, addEndComment } from '../../utils/add-html-comment';
 
 export default class CmsContainer extends React.Component {
   renderContainerWrapper(configuration, pageModel, preview) {
@@ -10,7 +11,7 @@ export default class CmsContainer extends React.Component {
         return (
           <React.Fragment>
             <div className="hst-container"
-                 ref={(containerElm) => { this.addComments(containerElm, configuration, preview); }}>
+                 ref={(containerElm) => { this.addMetaData(containerElm, configuration, preview); }}>
               { this.renderContainer(configuration, pageModel, preview) }
             </div>
           </React.Fragment>
@@ -29,12 +30,9 @@ export default class CmsContainer extends React.Component {
     }
   }
 
-  addComments(htmlElm, configuration, preview) {
-    if (preview && htmlElm && configuration && configuration._meta &&
-      configuration._meta.beginNodeSpan && configuration._meta.beginNodeSpan.data) {
-      htmlElm.insertAdjacentHTML("beforebegin", configuration._meta.beginNodeSpan.data);
-      htmlElm.insertAdjacentHTML("afterend", configuration._meta.endNodeSpan.data);
-    }
+  addMetaData(htmlElm, configuration, preview) {
+    addBeginComment(htmlElm, 'beforebegin', configuration, preview);
+    addEndComment(htmlElm, 'afterend', configuration, preview);
   }
 
   getConfigurationForPath(path, pageModel) {

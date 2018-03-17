@@ -4,7 +4,7 @@ import { parseDate } from '../../utils/date';
 export default class Content extends React.Component {
   render() {
     const content = this.props.content;
-    const editContentButton = this.props.editContentButton;
+    const manageContentButton = this.props.manageContentButton;
 
     let image;
     if (content.image && content.image._links && content.image._links.site) {
@@ -13,7 +13,7 @@ export default class Content extends React.Component {
 
     return (
       <div className="blog-post has-edit-button">
-        { editContentButton && editContentButton }
+        { manageContentButton && manageContentButton }
         <h2 className="blog-post-title">{content.title}</h2>
         <p className="blog-post-meta">
           { content.date &&
