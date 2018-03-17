@@ -51,11 +51,23 @@ export default class CmsPage extends React.Component {
     }
   }
 
-  componentDidUpdate () {
-    // parse CMS comments for rendering of content & component overlays
-    // do this after client-side rendering is finished
-    // also, override Hippo Channel Manager functions for handling state changes of components & containers
-    cmsJavascriptInitialization(this);
+  componentDidUpdate (prevProps, prevState) {
+    if (!prevState.pageModel) {
+      // parse CMS comments for rendering of content & component overlays
+      // do this after client-side rendering is finished
+      // also, override Hippo Channel Manager functions for handling state changes of components & containers
+      cmsJavascriptInitialization(this);
+    } else if (this.props.pathInfo !== prevProps.pathInfo) {
+      // fetch new API response if URL has changed
+      fetchCmsPage(this.props.pathInfo, this.props.preview).then(data => {
+        this.setState({
+          pageModel: data
+        });
+      });
+    } else if (this.state.pageModel !== prevState.pageModel) {
+      // parse CMS comments if state has been updated
+      cmsJavascriptInitialization(this);
+    }
   }
 
   componentDidMount() {

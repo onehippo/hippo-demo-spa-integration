@@ -1,5 +1,6 @@
 import React from 'react';
-import {parseDate} from "../../utils/date";
+import { Link } from 'react-router-dom'
+import { parseDate } from "../../utils/date";
 
 export default class NewsItem extends React.Component {
   render () {
@@ -8,14 +9,18 @@ export default class NewsItem extends React.Component {
 
     let link;
     if (content._links && content._links.site) {
-      link = content._links.site;
+      if (content._links.type === 'internal') {
+        link = <Link to={content._links.site}>{content.title}</Link>
+      } else {
+        <a href={content._links.site}>{content.title}</a>
+      }
     }
 
     return (
       <div className="blog-post has-edit-button">
         { manageContentButton && manageContentButton }
         <h2 className="blog-post-title">
-          <a href={link}>{content.title}</a>
+          { link && link }
         </h2>
         <p className="blog-post-meta">
           { content.date &&

@@ -9,12 +9,13 @@ export default class CmsContainer extends React.Component {
       // add additional cases here if you need custom HTML for a container
       default:
         return (
-          <React.Fragment>
+          // need to wrap container inside a div instead of React.Fragment because otherwise HTML comments are not removed
+          <div>
             <div className="hst-container"
                  ref={(containerElm) => { this.addMetaData(containerElm, configuration, preview); }}>
               { this.renderContainer(configuration, pageModel, preview) }
             </div>
-          </React.Fragment>
+          </div>
         );
     }
   }
