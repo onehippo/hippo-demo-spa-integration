@@ -12,7 +12,7 @@ export default class NewsItem extends React.Component {
       if (content._links.type === 'internal') {
         link = <Link to={content._links.site}>{content.title}</Link>
       } else {
-        <a href={content._links.site}>{content.title}</a>
+        link = <a href={content._links.site}>{content.title}</a>
       }
     }
 
