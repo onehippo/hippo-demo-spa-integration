@@ -1,15 +1,12 @@
 import React from 'react';
+import { getImageUrl } from '../../utils/image-url';
 import { parseDate } from '../../utils/date';
 
 export default class Content extends React.Component {
   render() {
     const content = this.props.content;
     const manageContentButton = this.props.manageContentButton;
-
-    let image;
-    if (content.image && content.image._links && content.image._links.site) {
-      image = content.image._links.site;
-    }
+    const image = getImageUrl(content.image);
 
     return (
       <div className="blog-post has-edit-button">

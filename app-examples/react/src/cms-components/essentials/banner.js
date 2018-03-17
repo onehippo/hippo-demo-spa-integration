@@ -1,14 +1,11 @@
 import React from 'react';
+import { getImageUrl } from '../../utils/image-url';
 
 export default class Banner extends React.Component {
   render() {
     const content = this.props.content;
     const manageContentButton = this.props.manageContentButton;
-
-    let image;
-    if (content.image && content.image._links && content.image._links.site) {
-      image = content.image._links.site;
-    }
+    const image = getImageUrl(content.image);
 
     return (
       <div className="jumbotron has-edit-button">
