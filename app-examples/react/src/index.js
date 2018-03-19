@@ -10,9 +10,9 @@ export default class HomePage extends React.Component {
     const preview = this.props.match.params.preview;
 
     return (
-        <CmsPage pathInfo={pathInfo} preview={preview} />
-      );
-    }
+      <CmsPage pathInfo={pathInfo} preview={preview} />
+    );
+  }
 }
 
 let routePath = '/:pathInfo*';

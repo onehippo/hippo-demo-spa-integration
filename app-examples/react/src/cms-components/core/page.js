@@ -2,6 +2,7 @@ import React from 'react';
 import { fetchCmsPage, fetchComponentUpdate } from '../../utils/fetch';
 import { cmsJavascriptInitialization } from '../../utils/cms-js-overrides';
 import { findChildById } from '../../utils/find-child-by-id';
+import Header from '../../header';
 import CmsComponent from './component';
 import CmsContainer from './container';
 
@@ -88,10 +89,13 @@ export default class CmsPage extends React.Component {
 
     return (
       <React.Fragment>
-        <CmsComponent configuration={pageModel.page} pageModel={pageModel} preview={preview} />
+        <Header pageModel={pageModel} preview={preview} />
+        <div className="container marketing">
+          <CmsComponent configuration={pageModel.page} pageModel={pageModel} preview={preview} />
 
-        {/*rendering a specific container:*/}
-        {/*<CmsContainer path='main/container' pageModel={pageModel} preview={preview} />*/}
+          {/*rendering a specific container:*/}
+          {/*<CmsContainer path='main/container' pageModel={pageModel} preview={preview} />*/}
+        </div>
       </React.Fragment>
     );
   }
