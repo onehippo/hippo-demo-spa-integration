@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { getConfigurationForPath } from '../../utils/get-configuration-for-path';
-import { baseUrls } from '../../env-vars';
 
 export default class CmsMenu extends React.Component {
   renderMenu(configuration, pageModel, preview) {
