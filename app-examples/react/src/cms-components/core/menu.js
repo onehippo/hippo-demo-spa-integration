@@ -38,6 +38,17 @@ export default class CmsMenu extends React.Component {
 }
 
 class CmsMenuItem extends React.Component {
+  renderLink (configuration, active) {
+    if (configuration._links && configuration._links.site && configuration._links.site.href) {
+      if (configuration._links.site.type === 'internal') {
+        return (<Link className="nav-link" to={configuration._links.site.href}>{configuration.name}{active}</Link>);
+      } else {
+        return (<a className="nav-link" href={configuration._links.site.href}>{configuration.name}{active}</a>)
+      }
+    }
+    return null;
+  }
+
   render() {
     const configuration = this.props.configuration;
 
@@ -50,14 +61,9 @@ class CmsMenuItem extends React.Component {
       active = <span className="sr-only">(current)</span>;
     }
 
-    // need to modify URLs as these are not correctly outputted by API
-    // TODO: remove once links are outputted by API correctly
-    const url = configuration.hstLink.url.replace('resourceapi/', '').replace('resourceapi', '').replace(baseUrls.cmsBaseUrl, '');
-
     return (
       <li className="nav-item">
-        <Link className="nav-link" to={url}>{configuration.name}{active}</Link>
-        {/*<a className="nav-link" href={url}>{configuration.name}{active}</a>*/}
+        { this.renderLink(configuration, active) }
       </li>
     );
   }
