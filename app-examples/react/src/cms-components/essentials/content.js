@@ -6,7 +6,7 @@ export default class Content extends React.Component {
   render() {
     const content = this.props.content;
     const manageContentButton = this.props.manageContentButton;
-    const image = getImageUrl(content.image);
+    const image = getImageUrl(content.image, this.props.pageModel);
 
     return (
       <div className="blog-post has-edit-button">

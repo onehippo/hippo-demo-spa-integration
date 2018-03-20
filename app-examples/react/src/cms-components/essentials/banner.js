@@ -5,7 +5,7 @@ export default class Banner extends React.Component {
   render() {
     const content = this.props.content;
     const manageContentButton = this.props.manageContentButton;
-    const image = getImageUrl(content.image);
+    const image = getImageUrl(content.image, this.props.pageModel);
 
     return (
       <div className="jumbotron has-edit-button">

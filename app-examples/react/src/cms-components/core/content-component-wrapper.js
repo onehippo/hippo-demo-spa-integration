@@ -6,12 +6,12 @@ import { componentDefinitions } from "../../component-definitions";
 import jsonpointer from 'jsonpointer';
 
 export default class ContentComponentWrapper extends React.Component {
-  renderContentComponentWrapper(component, content, preview, manageContentButton) {
+  renderContentComponentWrapper(component, pageModel, content, preview, manageContentButton) {
     // based on the type of the component, render a different React component
     if (component.label in componentDefinitions && componentDefinitions[component.label].component) {
       // component is defined, so render the component
       const componentEl = React.createElement(componentDefinitions[component.label].component,
-        { content: content, preview: preview, manageContentButton: manageContentButton }, null);
+        { content: content, pageModel: pageModel, preview: preview, manageContentButton: manageContentButton }, null);
       return (componentEl);
     } else {
       // component not defined in component-definitions
@@ -55,7 +55,7 @@ export default class ContentComponentWrapper extends React.Component {
 
     return (
       <React.Fragment>
-        { this.renderContentComponentWrapper(configuration, content, preview, manageContentButton) }
+        { this.renderContentComponentWrapper(configuration, pageModel, content, preview, manageContentButton) }
       </React.Fragment>
     );
   }
