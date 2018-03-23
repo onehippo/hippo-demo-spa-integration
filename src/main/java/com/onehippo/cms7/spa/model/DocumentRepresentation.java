@@ -21,11 +21,14 @@ public class DocumentRepresentation {
         this.document = document;
 
         final String renderMountAlias = requestContext.getResolvedMount().getMount().getParameter("renderMount");
-        final String link = requestContext.getHstLinkCreator().
+        String link = requestContext.getHstLinkCreator().
                 create(document.getNode(), requestContext, renderMountAlias, "live").
                 toUrlForm(requestContext, false);
+        // when running locally in dev mode links are suffixed with a query-parameter, remove this
+        if (link.indexOf("?org.hippoecm.hst.container.render_host=localhost") != -1) {
+            link = link.substring(0, link.indexOf("?org.hippoecm.hst.container.render_host=localhost"));
+        }
         this.link = link;
-
         if (requestContext.isPreview()) {
             this.cmsData = new CmsDataRepresentation(document, requestContext);
         }
