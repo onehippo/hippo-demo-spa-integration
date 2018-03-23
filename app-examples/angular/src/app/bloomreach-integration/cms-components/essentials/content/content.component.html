@@ -9,6 +9,6 @@
   <figure>
     <img src={{image}} alt={{content.document.title}}/>
   </figure>
-  <p [innerHTML]="content.document.content.content"></p>
+  <p [innerHTML]="content.document.content.value"></p>
 </div>
 <ng-template #configureComponentBlock>Click to configure {{component.type}}</ng-template>
