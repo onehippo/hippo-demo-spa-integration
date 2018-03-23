@@ -1,7 +1,7 @@
 <div className="blog-post has-edit-button">
   <!--{ editContentButton && editContentButton }-->
   <h2 className="blog-post-title">
-    <a href={{content.link}}>{{content.document.title}}</a>
+    <a routerLink={{content.link}}>{{content.document.title}}</a>
   </h2>
   <p className="blog-post-meta">
     <span className="blog-post-date">{{content.document.date | date}}</span>

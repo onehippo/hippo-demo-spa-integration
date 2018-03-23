@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/cor
 import { ContentService } from '../../../content.service';
 import { cmsJavascriptInitialization } from '../../../utils/cms-js-overrides';
 import { findChildById } from '../../../utils/find-child-by-id';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { BloomreachContext } from '../../../types/bloomreach-context.type';
 import 'rxjs/add/operator/map';
 
@@ -19,6 +19,7 @@ export class PageComponent implements OnInit, AfterViewInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private contentService: ContentService,
     private changeDetectorRef: ChangeDetectorRef,
   ) { }
@@ -26,6 +27,19 @@ export class PageComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.setBloomreachContext();
     this.getContainers();
+    // fetch Page Model API when navigated to a PageComponent
+    this.router.events
+      .subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.setBloomreachContext();
+          this.getContainers();
+          // quick fix for parsing HTML comments after load; need to hook into proper on-load event
+          setTimeout(() => {
+              cmsJavascriptInitialization(window, this);
+            },
+            500);
+        }
+      });
   }
 
   ngAfterViewInit() {
