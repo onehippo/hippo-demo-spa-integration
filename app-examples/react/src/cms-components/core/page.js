@@ -58,27 +58,15 @@ export default class CmsPage extends React.Component {
       this.setState({
         pageModel: data
       });
-      const comments = addBodyComments(this.state.comments, data.page, this.props.preview);
-      // comments are only returned if in preview mode
-      if (comments) {
-        // save comment elements to state, so these can be removed later on if page changes
-        this.setState({
-          comments: comments
-        })
-      }
+      addBodyComments(data.page, this.props.preview);
+      cmsParseComments();
     });
   }
 
   componentDidUpdate (prevProps, prevState) {
-    if (!prevState.pageModel) {
-      // parse CMS comments for initial rendering of content & component overlays
-      cmsParseComments();
-    } else if (this.props.pathInfo !== prevProps.pathInfo) {
+    if (this.props.pathInfo !== prevProps.pathInfo) {
       // fetch new API response if URL has changed
       this.fetchPageModel();
-    } else if (this.state.pageModel !== prevState.pageModel) {
-      // parse CMS comments if state has been updated
-      cmsParseComments();
     }
   }
 
