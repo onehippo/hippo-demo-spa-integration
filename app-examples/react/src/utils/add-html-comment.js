@@ -1,7 +1,7 @@
-function addBeginComment(htmlElm, position, configuration, preview) {
+function addBeginComment (htmlElm, position, configuration, preview) {
   if (preview && htmlElm && configuration && configuration._meta && configuration._meta.beginNodeSpan
     && configuration._meta.beginNodeSpan.length > 0 && configuration._meta.beginNodeSpan[0].data
-  && !htmlElm.classList.contains('cms-begin-comment-added')) {
+    && !htmlElm.classList.contains('cms-begin-comment-added')) {
     htmlElm.insertAdjacentHTML(position, configuration._meta.beginNodeSpan[0].data);
     // adding an HTML class to ensure comments are not added more than once
     // this is because the comments are added through the DOM and not by React
@@ -10,7 +10,7 @@ function addBeginComment(htmlElm, position, configuration, preview) {
   }
 }
 
-function addEndComment(htmlElm, position, configuration, preview) {
+function addEndComment (htmlElm, position, configuration, preview) {
   if (preview && htmlElm && configuration && configuration._meta && configuration._meta.endNodeSpan
     && configuration._meta.endNodeSpan.length > 0 && configuration._meta.endNodeSpan[0].data
     && !htmlElm.classList.contains('cms-end-comment-added')) {
@@ -20,23 +20,26 @@ function addEndComment(htmlElm, position, configuration, preview) {
   }
 }
 
-function addBodyComments(oldComments, configuration, preview) {
+function addBodyComments (oldComments, configuration, preview) {
+  // remove old body comments if there are any
   if (oldComments && oldComments.length > 0) {
-    for (let commentIdx in oldComments) {
-      document.body.removeChild(oldComments[commentIdx]);
+    for (let i = 0; i < oldComments.length; i++) {
+      document.body.removeChild(oldComments[i]);
     }
   }
+  // add new body comments
   if (preview && configuration && configuration._meta && configuration._meta.endNodeSpan
     && configuration._meta.endNodeSpan.length > 0) {
     let newComments = [];
-    for (let commentIdx in configuration._meta.endNodeSpan) {
-      const comment = document.createComment(configuration._meta.endNodeSpan[commentIdx].data);
-      // store the appended element and return is, so we can remove it later on
+    for (let i = 0; i < configuration._meta.endNodeSpan.length; i++) {
+      const comment = document.createComment(configuration._meta.endNodeSpan[i].data);
+      // store the appended element so we can remove it later on
       newComments.push(document.body.appendChild(comment));
     }
+    // return comment elements, so that these can be removed later if needed
     return newComments;
   }
   return null;
 }
 
-export { addBeginComment, addEndComment, addBodyComments };
+export {addBeginComment, addEndComment, addBodyComments};
