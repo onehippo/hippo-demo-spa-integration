@@ -29,7 +29,7 @@ export default class Content extends React.Component {
           </figure>
         }
         { content.content &&
-          <p dangerouslySetInnerHTML={{__html: content.content.content}}></p>
+          <p dangerouslySetInnerHTML={{__html: content.content.value}}></p>
         }
       </div>
     );
