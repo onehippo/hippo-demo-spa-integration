@@ -2,6 +2,7 @@ import React from 'react';
 import { fetchCmsPage, fetchComponentUpdate } from '../../utils/fetch';
 import { cmsJavascriptInitialization } from '../../utils/cms-js-overrides';
 import { findChildById } from '../../utils/find-child-by-id';
+import { addBodyComments } from '../../utils/add-html-comment';
 import Header from '../../header';
 import CmsComponent from './component';
 import CmsContainer from './container';
@@ -64,6 +65,10 @@ export default class CmsPage extends React.Component {
         this.setState({
           pageModel: data
         });
+        const comments = addBodyComments(this.state.comments, data.page, this.props.preview);
+        this.setState({
+          comments: comments
+        })
       });
     } else if (this.state.pageModel !== prevState.pageModel) {
       // parse CMS comments if state has been updated
@@ -76,6 +81,10 @@ export default class CmsPage extends React.Component {
       this.setState({
         pageModel: data
       });
+      const comments = addBodyComments(null, data.page, this.props.preview);
+      this.setState({
+        comments: comments
+      })
     });
   }
 
