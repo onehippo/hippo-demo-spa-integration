@@ -1,20 +1,9 @@
 // calls and overrides some of the Angular/JS functions of the Hippo Channel Manager
-function cmsJavascriptInitialization (reactContext) {
+export function cmsJavascriptInitialization (reactContext) {
   if (window && window.parent && window.parent.angular) {
     const injector = window.parent.angular.element(window.parent.document.body).injector();
-    const hstCommentsProcessorService = injector.get("hstCommentsProcessorService");
     const ComponentCatalogService = injector.get("ComponentCatalogService");
     const PageStructureService = injector.get("PageStructureService");
-
-    // clean any parsed CMS comments, if there were any in the server-side response
-    PageStructureService.clearParsedElements();
-    // parse HTML for CMS comments now that client-side rendering has finished
-    hstCommentsProcessorService.run(
-      document,
-      PageStructureService.registerParsedElement.bind(PageStructureService),
-    );
-    // add content & component links and overlays
-    PageStructureService.attachEmbeddedLinks();
 
     // Override renderComponent() function which normally requests the componentRenderingURL
     // and then updates the markup of the component by calling updateComponent().
@@ -59,4 +48,20 @@ function cmsJavascriptInitialization (reactContext) {
   }
 }
 
-export { cmsJavascriptInitialization };
+export function cmsParseComments() {
+  if (window && window.parent && window.parent.angular) {
+    const injector = window.parent.angular.element(window.parent.document.body).injector();
+    const hstCommentsProcessorService = injector.get("hstCommentsProcessorService");
+    const PageStructureService = injector.get("PageStructureService");
+
+    // clean any parsed CMS comments, if there were any in the server-side response
+    PageStructureService.clearParsedElements();
+    // parse HTML for CMS comments now that client-side rendering has finished
+    hstCommentsProcessorService.run(
+      document,
+      PageStructureService.registerParsedElement.bind(PageStructureService),
+    );
+    // add content & component links and overlays
+    PageStructureService.attachEmbeddedLinks();
+  }
+}

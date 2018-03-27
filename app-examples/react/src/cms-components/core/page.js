@@ -1,11 +1,11 @@
 import React from 'react';
 import { fetchCmsPage, fetchComponentUpdate } from '../../utils/fetch';
-import { cmsJavascriptInitialization } from '../../utils/cms-js-overrides';
+import { cmsJavascriptInitialization, cmsParseComments } from '../../utils/cms-js-overrides';
 import { findChildById } from '../../utils/find-child-by-id';
 import { addBodyComments } from '../../utils/add-html-comment';
 import Header from '../../header';
 import CmsComponent from './component';
-import CmsContainer from './container';
+import CmsContainer from './container'; // eslint-disable-line
 
 export default class CmsPage extends React.Component {
   constructor(props) {
@@ -53,39 +53,40 @@ export default class CmsPage extends React.Component {
     }
   }
 
-  componentDidUpdate (prevProps, prevState) {
-    if (!prevState.pageModel) {
-      // parse CMS comments for rendering of content & component overlays
-      // do this after client-side rendering is finished
-      // also, override Hippo Channel Manager functions for handling state changes of components & containers
-      cmsJavascriptInitialization(this);
-    } else if (this.props.pathInfo !== prevProps.pathInfo) {
-      // fetch new API response if URL has changed
-      fetchCmsPage(this.props.pathInfo, this.props.preview).then(data => {
-        this.setState({
-          pageModel: data
-        });
-        const comments = addBodyComments(this.state.comments, data.page, this.props.preview);
-        this.setState({
-          comments: comments
-        })
-      });
-    } else if (this.state.pageModel !== prevState.pageModel) {
-      // parse CMS comments if state has been updated
-      cmsJavascriptInitialization(this);
-    }
-  }
-
-  componentDidMount() {
+  fetchPageModel() {
     fetchCmsPage(this.props.pathInfo, this.props.preview).then(data => {
       this.setState({
         pageModel: data
       });
-      const comments = addBodyComments(null, data.page, this.props.preview);
-      this.setState({
-        comments: comments
-      })
+      const comments = addBodyComments(this.state.comments, data.page, this.props.preview);
+      // comments are only returned if in preview mode
+      if (comments) {
+        // save comment elements to state, so these can be removed later on if page changes
+        this.setState({
+          comments: comments
+        })
+      }
     });
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (!prevState.pageModel) {
+      // parse CMS comments for initial rendering of content & component overlays
+      cmsParseComments();
+    } else if (this.props.pathInfo !== prevProps.pathInfo) {
+      // fetch new API response if URL has changed
+      this.fetchPageModel();
+    } else if (this.state.pageModel !== prevState.pageModel) {
+      // parse CMS comments if state has been updated
+      cmsParseComments();
+    }
+  }
+
+  componentDidMount() {
+    // override Hippo Channel Manager functions for handling state changes of components & containers
+    cmsJavascriptInitialization(this);
+    // fetch page Model for current page
+    this.fetchPageModel();
   }
 
   render() {
