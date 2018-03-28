@@ -1,12 +1,18 @@
 import React from 'react';
 import { getImageUrl } from '../../utils/image-url';
 import { parseDate } from '../../utils/date';
+import { parseAndRewriteLinks } from '../../utils/link-rewriter';
 
 export default class Content extends React.Component {
   render() {
     const content = this.props.content;
     const manageContentButton = this.props.manageContentButton;
     const image = getImageUrl(content.image, this.props.pageModel);
+
+    let contentHtml;
+    if (content.content && content.content.value) {
+      contentHtml = parseAndRewriteLinks(content.content.value);
+    }
 
     return (
       <div className="blog-post has-edit-button">
@@ -28,9 +34,7 @@ export default class Content extends React.Component {
             <img src={image} alt={content.title}/>
           </figure>
         }
-        { content.content &&
-          <p dangerouslySetInnerHTML={{__html: content.content.value}}></p>
-        }
+        { contentHtml && contentHtml }
       </div>
     );
   }

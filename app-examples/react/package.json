@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "html-react-parser": "^0.4.3",
     "jsonpointer": "^4.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
