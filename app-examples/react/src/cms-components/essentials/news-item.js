@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-import { parseDate } from "../../utils/date";
+import { Link } from 'react-router-dom';
+import { parseDate } from '../../utils/date';
 
 export default class NewsItem extends React.Component {
   renderLink (content) {
