@@ -1,6 +1,5 @@
 import React from 'react';
 import { fetchCmsPage, fetchComponentUpdate } from '../../utils/fetch';
-import { cmsJavascriptInitialization, cmsParseComments } from '../../utils/cms-js-overrides';
 import { findChildById } from '../../utils/find-child-by-id';
 import { addBodyComments } from '../../utils/add-html-comment';
 import Header from '../../header';
@@ -11,6 +10,12 @@ export default class CmsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+
+    window.SPA = {
+      init: (cms) => {
+        this.cms = cms;
+      }
+    }
   }
 
   updateState (component, propertiesMap) {
@@ -59,7 +64,7 @@ export default class CmsPage extends React.Component {
         pageModel: data
       });
       addBodyComments(data.page, this.props.preview);
-      cmsParseComments();
+      this.cms.analyzePage();
     });
   }
 
@@ -72,7 +77,8 @@ export default class CmsPage extends React.Component {
 
   componentDidMount() {
     // override Hippo Channel Manager functions for handling state changes of components & containers
-    cmsJavascriptInitialization(this);
+    // cmsJavascriptInitialization(this);
+
     // fetch page Model for current page
     this.fetchPageModel();
   }
