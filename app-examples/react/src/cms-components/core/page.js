@@ -64,7 +64,9 @@ export default class CmsPage extends React.Component {
         pageModel: data
       });
       addBodyComments(data.page, this.props.preview);
-      this.cms.analyzePage();
+      if (this.cms) {
+        this.cms.analyzePage();
+      }
     });
   }
 
