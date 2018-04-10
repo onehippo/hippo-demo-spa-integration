@@ -22,37 +22,31 @@ export default class CmsPage extends React.Component {
   }
 
   updateState (componentId, propertiesMap) {
-    // only update when a component changes, when propertiesMap is empty the user has clicked cancel in component settings
-    // refresh in that case as an easy workaround
-    if (Object.keys(propertiesMap).length === 0) {
-      window.location.reload();
-    } else {
-      // find the component that needs to be updated in the page structure object using its ID
-      const componentToUpdate = findChildById(this.state.pageModel, componentId);
-      if (componentToUpdate !== undefined) {
-        // fetch updated component from the API
-        fetchComponentUpdate(this.props.pathInfo, this.props.preview, componentId, propertiesMap).then(response => {
-          // API can return empty response when component is deleted
-          if (response) {
-            // API can return either a single component or single container
-            if (response.page) {
-              console.log(response.page);
-              componentToUpdate.parent[componentToUpdate.idx] = response.page;
-            }
-            // update documents by merging with original documents map
-            if (response.content) {
-              let content = this.state.pageModel.content; // eslint-disable-line
-              // ignore error on next line, as variable is a reference to a sub-object of pageModel
-              // and will be used when pageModel is updated/set
-              content = Object.assign(content, response.content);
-            }
-            // update the page structure after the component/container has been updated
-            this.setState({
-              pageModel: this.state.pageModel
-            });
+    // find the component that needs to be updated in the page structure object using its ID
+    const componentToUpdate = findChildById(this.state.pageModel, componentId);
+    if (componentToUpdate !== undefined) {
+      // fetch updated component from the API
+      fetchComponentUpdate(this.props.pathInfo, this.props.preview, componentId, propertiesMap).then(response => {
+        // API can return empty response when component is deleted
+        if (response) {
+          // API can return either a single component or single container
+          if (response.page) {
+            console.log(response.page);
+            componentToUpdate.parent[componentToUpdate.idx] = response.page;
           }
-        });
-      }
+          // update documents by merging with original documents map
+          if (response.content) {
+            let content = this.state.pageModel.content; // eslint-disable-line
+            // ignore error on next line, as variable is a reference to a sub-object of pageModel
+            // and will be used when pageModel is updated/set
+            content = Object.assign(content, response.content);
+          }
+          // update the page structure after the component/container has been updated
+          this.setState({
+            pageModel: this.state.pageModel
+          });
+        }
+      });
     }
   }
 
@@ -76,9 +70,6 @@ export default class CmsPage extends React.Component {
   }
 
   componentDidMount() {
-    // override Hippo Channel Manager functions for handling state changes of components & containers
-    // cmsJavascriptInitialization(this);
-
     // fetch page Model for current page
     this.fetchPageModel();
   }
