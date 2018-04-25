@@ -90,10 +90,6 @@
       <artifactId>hst-mock</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>com.onehippo.cms7</groupId>
-      <artifactId>hippo-addon-spa-integration</artifactId>
-    </dependency>
   </dependencies>
   <build>
     <resources>

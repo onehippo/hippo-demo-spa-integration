@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <#include "../include/imports.ftl">
-<#assign baseUrl="http://localhost:3000"/>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -10,12 +9,11 @@
 
     <title>React App</title>
 
-    <link rel="stylesheet" href="${baseUrl}/css/bootstrap.min.css" media="screen">
-    <link rel="stylesheet" href="${baseUrl}/css/carousel.css">
-    <link rel="stylesheet" href="${baseUrl}/css/custom.css" media="screen">
+    <link rel="stylesheet" href="<@hst.link path="/static/spa/css/bootstrap.css"/>" media="screen">
+    <link rel="stylesheet" href="<@hst.link path="/static/spa/css/carousel.css"/>" media="screen">
+    <link rel="stylesheet" href="<@hst.link path="/static/spa/css/custom.css"/>" media="screen">
 
-    <link rel="manifest" href="${baseUrl}/manifest.json">
-    <link rel="shortcut icon" href="${baseUrl}/favicon.ico">
+    <link rel="shortcut icon" href="<@hst.link path="/static/spa/favicon.ico"/>">
 
   </head>
   <body>
@@ -43,11 +41,20 @@
     <div class="container marketing" id="root">
     </div>
     <footer>
-      <p>&copy; 2017 BloomReach, Inc.</p>
+      <p>&copy; 2018 BloomReach, Inc.</p>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
-    <script src="${baseUrl}/js/popper.min.js"></script>
-    <script src="${baseUrl}/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${baseUrl}/static/js/bundle.js"></script></body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="<@hst.link path="/js/jquery-2.1.0.min.js"/>"><\/script>')</script>
+    <script src="<@hst.link path="/static/spa/js/popper.min.js"/>"></script>
+    <script src="<@hst.link path="/js/bootstrap.min.js"/>"></script>
+    <#assign baseUrl="http://localhost:3000"/>
+    <script>
+      // load React app from local Node server
+      $.getScript( "${baseUrl}/static/js/bundle.js" )
+        .fail(function() {
+          // fallback to bundled React app in static resource
+          $.getScript( "<@hst.link path="/js/react-example-app.js"/>" );
+        });
+    </script>
+  </body>
 </html>

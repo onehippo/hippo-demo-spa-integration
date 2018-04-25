@@ -11,14 +11,9 @@ definitions:
         /hst:root:
           .meta:residual-child-node-category: content
           jcr:primaryType: hst:mount
+          hst:alias: main
           hst:homepage: root
           hst:mountpoint: /hst:hst/hst:sites/hippoaddonspaintegrationdemo
-          hst:alias: main
-          /resourceapi:
-            .meta:residual-child-node-category: content
-            jcr:primaryType: hst:mount
-            hst:alias: resourceapi
-            hst:namedpipeline: GenericResourceEntitySitePipeline
-            hst:parameternames: [renderMount]
-            hst:types: [rest]
-            hst:parametervalues: [main]
+          hst:namedpipeline: SpaSitePipeline
+          hst:pagemodelapi: resourceapi
+          hst:responseheaders: ['Access-Control-Allow-Origin: http://localhost:3000', 'Access-Control-Allow-Credentials: true']

@@ -1,17 +1,28 @@
-// only change these
-const scheme = 'http';
-const cmsContextPath = 'site';
-const cmsChannelPath = 'spa-hap';
-const cmsPreviewPrefix = '_cmsinternal';
-const cmsApiPath = 'resourceapi';
-const cmsApiComponentRenderingUrlSuffix = '?_hn:type=component-rendering&_hn:ref=';
+const defaultScheme = 'http';
+const defaultCmsHostName = 'localhost';
+const defaultCmsPort = '8080';
+const defaultCmsContextPath = 'site';
+const defaultCmsChannelPath = '';
+const defaultCmsPreviewPrefix = '_cmsinternal';
+const defaultCmsApiPath = 'resourceapi';
+const defaultCmsApiComponentRenderingUrlSuffix = '?_hn:type=component-rendering&_hn:ref=';
 
-// detect the host automatically.
-let cmsHostName = '127.0.0.1';
-let cmsPort = '9080';
-if (typeof window !== 'undefined' && window.location.host !== "localhost:3000") {
-  cmsHostName = window.location.hostname;
-  cmsPort = window.location.port;
+const SPAENV = (typeof window !== 'undefined' && typeof window.SPAENV !== 'undefined') ? window.SPAENV : {};
+
+let scheme = (SPAENV.scheme) ? SPAENV.scheme : defaultScheme;
+let cmsHostName = (SPAENV.cmsHostName) ? SPAENV.cmsHostName : defaultCmsHostName;
+let cmsPort = (SPAENV.cmsPort) ? SPAENV.cmsPort : defaultCmsPort;
+let cmsContextPath = (SPAENV.cmsContextPath) ? SPAENV.cmsContextPath : defaultCmsContextPath;
+let cmsChannelPath = (SPAENV.cmsChannelPath) ? SPAENV.cmsChannelPath : defaultCmsChannelPath;
+let cmsPreviewPrefix = (SPAENV.cmsPreviewPrefix) ? SPAENV.cmsPreviewPrefix : defaultCmsPreviewPrefix;
+let cmsApiPath = (SPAENV.cmsApiPath) ? SPAENV.cmsApiPath : defaultCmsApiPath;
+let cmsApiComponentRenderingUrlSuffix = (SPAENV.cmsApiComponentRenderingUrlSuffix) ? SPAENV.cmsApiComponentRenderingUrlSuffix : defaultCmsApiComponentRenderingUrlSuffix;
+
+// detect the host automatically from the hosted page if SPAENV wasn't given.
+if (window.location.host !== "localhost:3000") {
+  scheme = (!SPAENV.scheme) ? window.location.protocol.replace(/\:$/, '') : scheme;
+  cmsHostName = (!SPAENV.cmsHostName) ? window.location.hostname : cmsHostName;
+  cmsPort = (!SPAENV.cmsHostName) ? window.location.port : cmsPort;
 }
 
 // don't change these
