@@ -20,7 +20,7 @@ let cmsApiComponentRenderingUrlSuffix = (SPAENV.cmsApiComponentRenderingUrlSuffi
 
 // detect the host automatically from the hosted page if SPAENV wasn't given.
 if (window.location.host !== "localhost:3000") {
-  scheme = (!SPAENV.scheme) ? window.location.protocol.replace(/\:$/, '') : scheme;
+  scheme = (!SPAENV.scheme) ? window.location.protocol.replace(/:$/, '') : scheme;
   cmsHostName = (!SPAENV.cmsHostName) ? window.location.hostname : cmsHostName;
   cmsPort = (!SPAENV.cmsHostName) ? window.location.port : cmsPort;
 }
