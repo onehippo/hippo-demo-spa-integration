@@ -20,21 +20,10 @@ The demo project is located in the `./demo` folder. Build and install using the 
 ```
 
 ### Run the Demo React app
- 
-To install the React app. This requires you to either have the Node or Yarn package manager 
-installed. If you do not have any of these installed, either go to the [Node website](https://www.npmjs.com/get-npm) or 
-the [Yarn website](https://yarnpkg.com).
 
-To install the React application using Node, run the following commands from the `demo` folder:
+To install and start the React application using Yarn, run the following commands from the `demo` folder:
 ```bash
-    $ cd app-examples/react
-    $ npm install
-    $ npm start
-```
-
-Alternatively, to install the React application using Yarn, run the following commands from the `demo` folder:
-```bash
-    $ cd app-examples/react
+    $ cd spa/react
     $ yarn install
     $ yarn start
 ```
