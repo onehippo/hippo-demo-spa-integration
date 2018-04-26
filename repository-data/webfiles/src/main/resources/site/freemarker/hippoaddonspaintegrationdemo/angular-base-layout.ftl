@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Sample React App showcasing BloomReach Experience integration">
-    <meta name="author" content="Robbert Kauffman, Solution Consultant, BloomReach">
 
     <title>Example Angular App</title>
     <base href="/">

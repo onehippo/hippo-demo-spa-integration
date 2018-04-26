@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Sample React App showcasing BloomReach Experience integration">
-    <meta name="author" content="Robbert Kauffman, Solution Consultant, BloomReach">
 
     <title>React App</title>
 
@@ -14,7 +13,6 @@
     <link rel="stylesheet" href="<@hst.link path="/static/spa/css/custom.css"/>" media="screen">
 
     <link rel="shortcut icon" href="<@hst.link path="/static/spa/favicon.ico"/>">
-
   </head>
   <body>
     <noscript>
@@ -47,14 +45,27 @@
     <script>window.jQuery || document.write('<script src="<@hst.link path="/js/jquery-2.1.0.min.js"/>"><\/script>')</script>
     <script src="<@hst.link path="/static/spa/js/popper.min.js"/>"></script>
     <script src="<@hst.link path="/js/bootstrap.min.js"/>"></script>
-    <#assign baseUrl="http://localhost:3000"/>
     <script>
-      // load React app from local Node server
-      $.getScript( "${baseUrl}/static/js/bundle.js" )
-        .fail(function() {
-          // fallback to bundled React app in static resource
-          $.getScript( "<@hst.link path="/js/react-example-app.js"/>" );
-        });
+      var loadSpaBundles = function() {
+        // load React app from local Node server or static bundle js resource.
+        $.getScript( "http://localhost:3000/static/js/bundle.js" )
+          .fail(function() {
+            // fallback to bundled React app in static resource
+            $.getScript( "<@hst.link path="/js/react-example-app.js"/>" );
+          });
+      };
+
+      window.SPA = {
+        cmsRequest: ${hstRequestContext.cmsRequest?then('true','false')},
+        init: function(cms) {
+          window.SPA.cms = cms;
+          window.setTimeout('loadSpaBundles();', 10);
+        }
+      };
+
+      if (!window.SPA.cmsRequest) {
+        loadSpaBundles();
+      }
     </script>
   </body>
 </html>

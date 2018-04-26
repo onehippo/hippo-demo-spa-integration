@@ -11,13 +11,29 @@ export default class CmsPage extends React.Component {
     super(props);
     this.state = {};
 
-    window.SPA = {
-      init: (cms) => {
+    const windowSPAPreloaded = (typeof window !== 'undefined' && typeof window.SPA !== 'undefined');
+
+    if (windowSPAPreloaded) {
+      window.SPA.init = (cms) => {
         this.cms = cms;
-      },
-      renderComponent: (id, propertiesMap) => {
+      };
+      window.SPA.renderComponent = (id, propertiesMap) => {
         this.updateState(id, propertiesMap);
-      }
+      };
+    } else {
+      window.SPA = {
+        init: (cms) => {
+          this.cms = cms;
+        },
+        renderComponent: (id, propertiesMap) => {
+          this.updateState(id, propertiesMap);
+        }
+      };
+    }
+
+    if (windowSPAPreloaded && typeof window.SPA.cms !== 'undefined') {
+      window.SPA.init(window.SPA.cms);
+      window.SPA.cms = null;
     }
   }
 
