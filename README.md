@@ -62,7 +62,7 @@ Build and install the demo like the following:
     $ mvn -P cargo.run
 ```
 
-### Run Demo React app
+## Run Demo React app
 
 To install and start the React application using Yarn, run the following commands
 (you can skip ```yarn install`` if you have ever installed the dependencies before):
@@ -73,4 +73,11 @@ $ yarn install
 $ yarn start
 ```
 
-You should now be able to access the React app at ```http://localhost:8080/site``` or ```http://localhost:3000```.
+You should now be able to access the React app in delivery tier at http://localhost:8080/site/ or http://localhost:3000.
+
+## (Enterprise Edition Only) Test Channel Manager Integration
+
+If you build and run Demo CMS project enterprise edition, then visit the Channel Manager by selecting **Channels** perspective after logging in CMS at http://localhost:8080/cms/, and select the default channel to manage.
+
+You will be able to set component parameters, add, remove or drag&drop components in SPA.
+
