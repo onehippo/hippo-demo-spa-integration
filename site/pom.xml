@@ -94,10 +94,10 @@
 
   <profiles>
     <profile>
-      <id>bre</id>
+      <id>enterprise</id>
       <activation>
         <property>
-          <name>bre</name>
+          <name>enterprise</name>
         </property>
       </activation>
       <dependencies>

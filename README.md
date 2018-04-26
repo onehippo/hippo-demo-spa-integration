@@ -50,13 +50,13 @@ First, build/install Demo CMS project enterprise edition's parent POM project li
 $ mvn -f parent-pom/enterprise/pom.xml install
 ```
 
-Second, build Demo CMS project enterprise edition with ```-Dbre``` system property like the following:
+Second, build Demo CMS project enterprise edition with ```-Denterprise``` system property like the following:
 
 ```bash
-$ mvn clean verify -Dbre
+$ mvn clean verify -Denterprise
 ```
 
-The ```-Dbre``` system property lets it pull in all the necessary enterprise modules.
+The ```-Denterprise``` system property lets it pull in all the necessary enterprise modules.
 
 ## Run Demo CMS project
 
