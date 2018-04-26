@@ -12,6 +12,9 @@ Provides ready-to-use APIs and components to integrate SPAs with the CMS.
 
 ## Build Demo CMS project
 
+**Note**: If you are a developer and want to build with SNAPSHOT version in ```develop``` branch, then you should append
+```-Dhippo.snapshots``` in each Maven command shown below.
+
 There are two editions: (a) Community Edition and (b) Enterprise Edition.
 
 Demo CMS project community edition shows how SPAs can be integrated in Delivery tier.
