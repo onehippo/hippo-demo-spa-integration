@@ -16,4 +16,12 @@
   <version>2.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+  <repositories>
+    <repository>
+      <id>hippo</id>
+      <name>Hippo maven 2 repository.</name>
+      <url>https://maven.onehippo.com/maven2/</url>
+    </repository>
+  </repositories>
+
 </project>
