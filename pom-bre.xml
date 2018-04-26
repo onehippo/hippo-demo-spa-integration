@@ -3,15 +3,15 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.onehippo.cms7</groupId>
-    <artifactId>hippo-cms7-release</artifactId>
+    <groupId>com.onehippo.cms7</groupId>
+    <artifactId>hippo-cms7-enterprise-release</artifactId>
     <version>12.3.0-SNAPSHOT</version>
   </parent>
 
-  <name>Hippo Addon SPA Integration Demo</name>
-  <description>Hippo Addon SPA Integration Demo</description>
+  <name>Hippo Addon SPA Integration Demo Enterprise</name>
+  <description>Hippo Addon SPA Integration Demo Enterprise</description>
   <groupId>com.onehippo.cms7.demo</groupId>
-  <artifactId>hippo-addon-spa-integration-demo</artifactId>
+  <artifactId>hippo-addon-spa-integration-demo-enterprise</artifactId>
   <version>2.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
@@ -82,10 +82,21 @@
       <name>Hippo maven 2 repository.</name>
       <url>https://maven.onehippo.com/maven2/</url>
     </repository>
+    <repository>
+      <id>hippo-maven2-enterprise</id>
+      <name>Hippo Enterprise Maven 2</name>
+      <url>https://maven.onehippo.com/maven2-enterprise</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </releases>
+    </repository>
   </repositories>
 
   <dependencyManagement>
+
     <dependencies>
+
       <dependency>
         <groupId>org.onehippo.cms7</groupId>
         <artifactId>hippo-essentials-plugin-sdk-api</artifactId>
@@ -149,6 +160,7 @@
       </dependency>
 
     </dependencies>
+
   </dependencyManagement>
 
   <build>
