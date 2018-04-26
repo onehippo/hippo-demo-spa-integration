@@ -69,7 +69,7 @@ Build and install the demo like the following:
 ## Run Demo React app
 
 To install and start the React application using Yarn, run the following commands
-(you can skip ```yarn install`` if you have ever installed the dependencies before):
+(you can skip `yarn install` if you have ever installed the dependencies before):
 
 ```bash
 $ cd spa/react
