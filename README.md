@@ -6,32 +6,66 @@ Provides ready-to-use APIs and components to integrate SPAs with the CMS.
 
 ## Release Version Compatibility
 
-| Add-on Version | CMS Version  |
+| Demo Version   | CMS Version  |
 |:--------------:|:------------:|
-| 2.x            | 12.3+        |
+| 2.0.x          | 12.3.x       |
 
-## Run the Demo CMS project
+## Build Demo CMS project
 
-The demo project is located in the `./demo` folder. Build and install using the regular commands:
+There are two editions: (a) Community Edition and (b) Enterprise Edition.
+
+Demo CMS project community edition shows how SPAs can be integrated in Delivery tier.
+
+Demo CMS project enterprise edition shows how SPAs can be integrated in Channel Manager in addition.
+
+Each edition is differentiated by the project's parent POM dependency.
+So, before building CMS project, you need to build/install a proper parent POM project first as instructed below.
+
+### Build Demo CMS Project community edition
+
+First, build/install Demo CMS project community edition's parent POM project like the following:
+
 ```bash
-    $ cd demo
-    $ mvn clean verify
+$ mvn -f parent-pom/community/pom.xml install
+```
+
+Second, build Demo CMS project community edition like the following:
+
+```bash
+$ mvn clean verify
+```
+
+### Build the Demo CMS Project enterprise edition
+
+First, build/install Demo CMS project enterprise edition's parent POM project like the following:
+
+```bash
+$ mvn -f parent-pom/enterprise/pom.xml install
+```
+
+Second, build Demo CMS project enterprise edition like the following:
+
+```bash
+$ mvn clean verify
+```
+
+## Run Demo CMS project
+
+Build and install the demo like the following:
+
+```bash
     $ mvn -P cargo.run
 ```
 
-### Run the Demo React app
+### Run Demo React app
 
-To install and start the React application using Yarn, run the following commands from the `demo` folder:
+To install and start the React application using Yarn, run the following commands
+(you can skip ```yarn install`` if you have ever installed the dependencies before):
+
 ```bash
-    $ cd spa/react
-    $ yarn install
-    $ yarn start
+$ cd spa/react
+$ yarn install
+$ yarn start
 ```
 
-You should now be able to access the React app at `http://localhost:3000/site`. Please note that `http://localhost:3000`
-will not work locally, because you need to pass the context-path of the site through the URL.
-
-When viewing the site in the CMS, select `React` as the front-end renderer in 
-`Channel Settings` in the Channel Manager of the CMS.
-
-All done! For those that used the old version of the React app, you no longer need to run a separate WebSockets server.
+You should now be able to access the React app at ```http://localhost:8080/site``` or ```http://localhost:3000```.

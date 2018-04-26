@@ -62,6 +62,29 @@
       <artifactId>hippo-plugin-selections-addon-repository</artifactId>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>bre</id>
+      <activation>
+        <property>
+          <name>bre</name>
+        </property>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.onehippo.cms7</groupId>
+          <artifactId>hippo-enterprise-package-app-dependencies</artifactId>
+          <type>pom</type>
+        </dependency>
+        <dependency>
+          <groupId>com.onehippo.cms7</groupId>
+          <artifactId>hippo-addon-edition-indicator</artifactId>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
+
   <build>
     <finalName>cms</finalName>
     <plugins>

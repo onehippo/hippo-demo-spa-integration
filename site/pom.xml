@@ -91,6 +91,25 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>bre</id>
+      <activation>
+        <property>
+          <name>bre</name>
+        </property>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.onehippo.cms7</groupId>
+          <artifactId>hippo-addon-enterprise-site-toolkit-dependencies-server</artifactId>
+          <type>pom</type>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
+
   <build>
     <resources>
       <resource>
