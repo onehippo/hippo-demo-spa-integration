@@ -5,7 +5,7 @@ Hippo SPA Integration Demo
 Provides a seamless SPA++ integration demo for Hippo CMS and BloomReach Experience.
 For details on SPA++, see [SPA++ for Seamless SPA Integration Experiences](https://www.onehippo.org/library/concepts/spa-plus/introduction.html).
 
-Also, this demo project contains reusable example code libaries.
+Also, this demo project contains reusable React SPA example code and libaries.
 
 ## Release Version Compatibility
 
