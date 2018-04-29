@@ -8,11 +8,11 @@ For details on SPA++, see [SPA++ for Seamless SPA Integration Experiences](https
 Also, this demo project contains reusable React SPA example code and libaries.
 For details on React Demo, see [About React Demo](spa/ABOUT_REACT_DEMO.md).
 
-## Release Version Compatibility
+## Version Compatibility
 
 | Demo Version   | CMS Version  |
 |:--------------:|:------------:|
-| 2.0.x          | 12.3.x       |
+| 1.0.x          | 12.3.x       |
 
 ## Build Demo CMS project
 
