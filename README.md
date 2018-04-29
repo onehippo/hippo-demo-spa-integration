@@ -82,3 +82,13 @@ You should now be able to access the React app in delivery tier at http://localh
 If you build and run Demo CMS project enterprise edition, then visit the Channel Manager by selecting **Channels** perspective after logging in CMS at http://localhost:8080/cms/, and select the default channel to manage.
 
 You will be able to set component parameters, add, remove or drag&drop components in SPA.
+
+
+## (For Project Maintainers Only) Tagging Process
+
+For tagging processes, follow [Hippo Forge Release Process](https://onehippo-forge.github.io/release-process.html)
+and the principles mentioned there
+with the following exceptions:
+- When bumping up project versions, bump up the versions for both [parent-pom/community](parent-pom/community) and
+  [parent-pom/enterprise](parent-pom/enterprise) as well.
+- As this project is just a demo, do not deploy to Maven repositories.
