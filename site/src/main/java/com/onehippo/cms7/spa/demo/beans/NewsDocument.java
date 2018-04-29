@@ -22,30 +22,30 @@ import org.hippoecm.hst.content.beans.standard.HippoGalleryImageSet;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 
-@HippoEssentialsGenerated(internalName = "hippoaddonspaintegrationdemo:newsdocument")
-@Node(jcrType="hippoaddonspaintegrationdemo:newsdocument")
+@HippoEssentialsGenerated(internalName = "hippodemospaintegration:newsdocument")
+@Node(jcrType="hippodemospaintegration:newsdocument")
 public class NewsDocument extends HippoDocument {
 
     /**
      * The document type of the news document.
      */
-    public final static String DOCUMENT_TYPE = "hippoaddonspaintegrationdemo:newsdocument";
+    public final static String DOCUMENT_TYPE = "hippodemospaintegration:newsdocument";
 
-    private final static String TITLE = "hippoaddonspaintegrationdemo:title";
-    private final static String DATE = "hippoaddonspaintegrationdemo:date";
-    private final static String INTRODUCTION = "hippoaddonspaintegrationdemo:introduction";
-    private final static String IMAGE = "hippoaddonspaintegrationdemo:image";
-    private final static String CONTENT = "hippoaddonspaintegrationdemo:content";
-    private final static String LOCATION = "hippoaddonspaintegrationdemo:location";
-    private final static String AUTHOR = "hippoaddonspaintegrationdemo:author";
-    private final static String SOURCE = "hippoaddonspaintegrationdemo:source";
+    private final static String TITLE = "hippodemospaintegration:title";
+    private final static String DATE = "hippodemospaintegration:date";
+    private final static String INTRODUCTION = "hippodemospaintegration:introduction";
+    private final static String IMAGE = "hippodemospaintegration:image";
+    private final static String CONTENT = "hippodemospaintegration:content";
+    private final static String LOCATION = "hippodemospaintegration:location";
+    private final static String AUTHOR = "hippodemospaintegration:author";
+    private final static String SOURCE = "hippodemospaintegration:source";
 
     /**
      * Get the title of the document.
      *
      * @return the title
      */
-    @HippoEssentialsGenerated(internalName = "hippoaddonspaintegrationdemo:title")
+    @HippoEssentialsGenerated(internalName = "hippodemospaintegration:title")
     public String getTitle() {
         return getProperty(TITLE);
     }
@@ -55,7 +55,7 @@ public class NewsDocument extends HippoDocument {
      *
      * @return the date
      */
-    @HippoEssentialsGenerated(internalName = "hippoaddonspaintegrationdemo:date")
+    @HippoEssentialsGenerated(internalName = "hippodemospaintegration:date")
     public Calendar getDate() {
         return getProperty(DATE);
     }
@@ -65,7 +65,7 @@ public class NewsDocument extends HippoDocument {
      *
      * @return the introduction
      */
-    @HippoEssentialsGenerated(internalName = "hippoaddonspaintegrationdemo:introduction")
+    @HippoEssentialsGenerated(internalName = "hippodemospaintegration:introduction")
     public String getIntroduction() {
         return getProperty(INTRODUCTION);
     }
@@ -75,7 +75,7 @@ public class NewsDocument extends HippoDocument {
      *
      * @return the image
      */
-    @HippoEssentialsGenerated(internalName = "hippoaddonspaintegrationdemo:image")
+    @HippoEssentialsGenerated(internalName = "hippodemospaintegration:image")
     public HippoGalleryImageSet getImage() {
         return getLinkedBean(IMAGE, HippoGalleryImageSet.class);
     }
@@ -85,7 +85,7 @@ public class NewsDocument extends HippoDocument {
      *
      * @return the content
      */
-    @HippoEssentialsGenerated(internalName = "hippoaddonspaintegrationdemo:content")
+    @HippoEssentialsGenerated(internalName = "hippodemospaintegration:content")
     public HippoHtml getContent() {
         return getHippoHtml(CONTENT);
     }
@@ -95,7 +95,7 @@ public class NewsDocument extends HippoDocument {
      *
      * @return the location
      */
-    @HippoEssentialsGenerated(internalName = "hippoaddonspaintegrationdemo:location")
+    @HippoEssentialsGenerated(internalName = "hippodemospaintegration:location")
     public String getLocation() {
         return getProperty(LOCATION);
     }
@@ -105,7 +105,7 @@ public class NewsDocument extends HippoDocument {
      *
      * @return the author
      */
-    @HippoEssentialsGenerated(internalName = "hippoaddonspaintegrationdemo:author")
+    @HippoEssentialsGenerated(internalName = "hippodemospaintegration:author")
     public String getAuthor() {
         return getProperty(AUTHOR);
     }
@@ -115,10 +115,9 @@ public class NewsDocument extends HippoDocument {
      *
      * @return the source
      */
-    @HippoEssentialsGenerated(internalName = "hippoaddonspaintegrationdemo:source")
+    @HippoEssentialsGenerated(internalName = "hippodemospaintegration:source")
     public String getSource() {
         return getProperty(SOURCE);
     }
 
 }
-

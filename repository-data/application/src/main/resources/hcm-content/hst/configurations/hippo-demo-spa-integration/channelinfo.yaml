@@ -1,0 +1,3 @@
+/hst:hst/hst:configurations/hippodemospaintegration/hst:workspace/hst:channel/hst:channelinfo:
+  jcr:primaryType: hst:channelinfo
+  frontend: react

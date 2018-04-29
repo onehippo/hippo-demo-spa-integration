@@ -4,16 +4,16 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.onehippo.cms7.demo</groupId>
-    <artifactId>hippo-addon-spa-integration-demo-repository-data</artifactId>
+    <artifactId>hippo-demo-spa-integration-repository-data</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>hippo-addon-spa-integration-demo-repository-data-webfiles</artifactId>
-  <name>Hippo Addon SPA Integration Demo Repository Data Web Files</name>
-  <description>Hippo Addon SPA Integration Demo Repository Data Web Files</description>
+  <artifactId>hippo-demo-spa-integration-repository-data-webfiles</artifactId>
+  <name>Hippo Demo SPA Integration Repository Data Web Files</name>
+  <description>Hippo Demo SPA Integration Repository Data Web Files</description>
   <dependencies>
     <dependency>
       <groupId>com.onehippo.cms7.demo</groupId>
-      <artifactId>hippo-addon-spa-integration-demo-site</artifactId>
+      <artifactId>hippo-demo-spa-integration-site</artifactId>
       <version>${project.version}</version>
       <type>war</type>
       <scope>provided</scope>

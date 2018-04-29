@@ -8,7 +8,7 @@
     <developmentSubModule>development</developmentSubModule>
     <enterprise>false</enterprise>
     <extraTemplates>true</extraTemplates>
-    <projectNamespace>hippoaddonspaintegrationdemo</projectNamespace>
+    <projectNamespace>hippodemospaintegration</projectNamespace>
     <repositoryDataModule>repository-data</repositoryDataModule>
     <selectedBeansPackage>com.onehippo.cms7.spa.demo.beans</selectedBeansPackage>
     <selectedComponentsPackage>com.onehippo.cms7.spa.demo.components</selectedComponentsPackage>

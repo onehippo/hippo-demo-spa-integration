@@ -1,0 +1,28 @@
+definitions:
+  config:
+    /hst:hst/hst:configurations/hippodemospaintegration/hst:templates:
+      jcr:primaryType: hst:templates
+      /base-layout:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/freemarker/hippodemospaintegration/base-layout.ftl
+      /react-base-layout:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/freemarker/hippodemospaintegration/react-base-layout.ftl
+      /angular-base-layout:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/freemarker/hippodemospaintegration/angular-base-layout.ftl
+      /base-top-menu:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/freemarker/hippodemospaintegration/base-top-menu.ftl
+      /base-footer:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/freemarker/hippodemospaintegration/base-footer.ftl
+      /homepage-main:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/freemarker/hippodemospaintegration/homepage-main.ftl
+      /pagenotfound-main:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/freemarker/hippodemospaintegration/pagenotfound-main.ftl
+      /newspage-main:
+        jcr:primaryType: hst:template
+        hst:renderpath: webfile:/freemarker/hstdefault/newspage-main.ftl

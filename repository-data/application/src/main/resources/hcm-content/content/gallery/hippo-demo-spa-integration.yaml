@@ -1,0 +1,7 @@
+/content/gallery/hippodemospaintegration:
+  jcr:primaryType: hippogallery:stdImageGallery
+  jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+  jcr:uuid: 9ce5f06e-7bd5-42ea-994f-d3502b33e354
+  hippo:name: Hippo Demo SPA Integration
+  hippostd:foldertype: [new-image-folder]
+  hippostd:gallerytype: ['hippogallery:imageset']

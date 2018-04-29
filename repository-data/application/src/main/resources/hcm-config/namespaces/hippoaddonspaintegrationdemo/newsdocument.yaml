@@ -1,6 +1,6 @@
 definitions:
   config:
-    /hippo:namespaces/hippoaddonspaintegrationdemo/newsdocument:
+    /hippo:namespaces/hippodemospaintegration/newsdocument:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
       jcr:uuid: ee5b9e25-a1e6-4eab-83b0-d33f51bda1e0
@@ -13,15 +13,15 @@ definitions:
           jcr:mixinTypes: ['hipposysedit:remodel', 'mix:referenceable']
           jcr:uuid: f29ce105-8b62-4172-b2b8-4e1fcca24248
           hipposysedit:node: true
-          hipposysedit:supertype: ['hippoaddonspaintegrationdemo:basedocument', 'hippostd:relaxed',
+          hipposysedit:supertype: ['hippodemospaintegration:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
-          hipposysedit:uri: http://www.onehippo.org/hippoaddonspaintegrationdemo/nt/1.0
+          hipposysedit:uri: http://www.onehippo.org/hippodemospaintegration/nt/1.0
           /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: hippoaddonspaintegrationdemo:title
+            hipposysedit:path: hippodemospaintegration:title
             hipposysedit:primary: false
             hipposysedit:type: String
           /introduction:
@@ -29,7 +29,7 @@ definitions:
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: hippoaddonspaintegrationdemo:introduction
+            hipposysedit:path: hippodemospaintegration:introduction
             hipposysedit:primary: false
             hipposysedit:type: Text
           /content:
@@ -37,7 +37,7 @@ definitions:
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: hippoaddonspaintegrationdemo:content
+            hipposysedit:path: hippodemospaintegration:content
             hipposysedit:primary: false
             hipposysedit:type: hippostd:html
           /date:
@@ -45,7 +45,7 @@ definitions:
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: hippoaddonspaintegrationdemo:date
+            hipposysedit:path: hippodemospaintegration:date
             hipposysedit:primary: false
             hipposysedit:type: Date
             hipposysedit:validators: [required]
@@ -54,7 +54,7 @@ definitions:
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: hippoaddonspaintegrationdemo:image
+            hipposysedit:path: hippodemospaintegration:image
             hipposysedit:primary: false
             hipposysedit:type: hippogallerypicker:imagelink
           /author:
@@ -62,7 +62,7 @@ definitions:
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: hippoaddonspaintegrationdemo:author
+            hipposysedit:path: hippodemospaintegration:author
             hipposysedit:primary: false
             hipposysedit:type: String
           /source:
@@ -70,7 +70,7 @@ definitions:
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: hippoaddonspaintegrationdemo:source
+            hipposysedit:path: hippodemospaintegration:source
             hipposysedit:primary: false
             hipposysedit:type: String
           /location:
@@ -78,20 +78,20 @@ definitions:
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: hippoaddonspaintegrationdemo:location
+            hipposysedit:path: hippodemospaintegration:location
             hipposysedit:primary: false
             hipposysedit:type: String
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
-          jcr:primaryType: hippoaddonspaintegrationdemo:newsdocument
+          jcr:primaryType: hippodemospaintegration:newsdocument
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 0d9f4c01-8ea0-47ed-98a9-596c5ce83fdd
           hippo:related___pathreference: []
-          hippoaddonspaintegrationdemo:date: 0001-01-01T13:00:00+01:00
-          hippoaddonspaintegrationdemo:documenttype: news
-          hippoaddonspaintegrationdemo:introduction: ''
-          hippoaddonspaintegrationdemo:title: ''
+          hippodemospaintegration:date: 0001-01-01T13:00:00+01:00
+          hippodemospaintegration:documenttype: news
+          hippodemospaintegration:introduction: ''
+          hippodemospaintegration:title: ''
           hippostd:holder: holder
           hippostd:state: draft
           hippostdpubwf:createdBy: ''
@@ -100,10 +100,10 @@ definitions:
           hippostdpubwf:lastModifiedBy: ''
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
-          /hippoaddonspaintegrationdemo:content:
+          /hippodemospaintegration:content:
             jcr:primaryType: hippostd:html
             hippostd:content: <html><body></body></html>
-          /hippoaddonspaintegrationdemo:image:
+          /hippodemospaintegration:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
             hippo:facets: []
@@ -116,7 +116,7 @@ definitions:
           frontend:properties: [mode]
           frontend:references: [wicket.model, model.compareTo, engine, validator.id]
           frontend:services: [wicket.id, validator.id]
-          type: hippoaddonspaintegrationdemo:newsdocument
+          type: hippodemospaintegration:newsdocument
           /root:
             jcr:primaryType: frontend:plugin
             extension.left: ${cluster.id}.left

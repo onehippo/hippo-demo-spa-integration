@@ -1,8 +1,8 @@
 definitions:
   namespace:
-    hippoaddonspaintegrationdemo:
-      uri: http://www.onehippo.org/hippoaddonspaintegrationdemo/nt/1.0
-      cnd: namespaces/hippo-addon-spa-integration-demo.cnd
+    hippodemospaintegration:
+      uri: http://www.onehippo.org/hippodemospaintegration/nt/1.0
+      cnd: namespaces/hippo-demo-spa-integration.cnd
   config:
     /hippo:configuration/hippo:modules/webfiles/hippo:moduleconfig:
       watchedModules: [repository-data/webfiles]

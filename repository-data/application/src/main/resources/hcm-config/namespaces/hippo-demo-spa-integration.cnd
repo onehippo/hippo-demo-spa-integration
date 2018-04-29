@@ -1,0 +1,14 @@
+<'hippodemospaintegration'='http://www.onehippo.org/hippodemospaintegration/nt/1.0'>
+<'hippo'='http://www.onehippo.org/jcr/hippo/nt/2.0.4'>
+<'hippostd'='http://www.onehippo.org/jcr/hippostd/nt/2.0'>
+<'hippostdpubwf'='http://www.onehippo.org/jcr/hippostdpubwf/nt/1.0'>
+<'hippotranslation'='http://www.onehippo.org/jcr/hippotranslation/nt/1.0'>
+
+[hippodemospaintegration:basedocument] > hippo:document, hippostd:publishableSummary, hippostdpubwf:document
+  orderable
+
+[hippodemospaintegration:bannerdocument] > hippodemospaintegration:basedocument, hippostd:relaxed, hippotranslation:translated
+  orderable
+
+[hippodemospaintegration:newsdocument] > hippodemospaintegration:basedocument, hippostd:relaxed, hippotranslation:translated
+  orderable

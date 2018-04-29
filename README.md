@@ -1,6 +1,4 @@
-# hippo-addon-spa-integration
-
-Hippo SPA Integration Demo
+# SPA++ Integration Demo Project for Hippo CMS and BloomReach Experience
 
 Provides a seamless SPA++ integration demo for Hippo CMS and BloomReach Experience.
 For details on SPA++, see [SPA++ for Seamless SPA Integration Experiences](https://www.onehippo.org/library/concepts/spa-plus/introduction.html).
@@ -84,4 +82,3 @@ You should now be able to access the React app in delivery tier at http://localh
 If you build and run Demo CMS project enterprise edition, then visit the Channel Manager by selecting **Channels** perspective after logging in CMS at http://localhost:8080/cms/, and select the default channel to manage.
 
 You will be able to set component parameters, add, remove or drag&drop components in SPA.
-

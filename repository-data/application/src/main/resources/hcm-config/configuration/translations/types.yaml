@@ -1,78 +1,78 @@
 definitions:
   config:
-    /hippo:configuration/hippo:translations/hippo:types/hippoaddonspaintegrationdemo:bannerdocument:
+    /hippo:configuration/hippo:translations/hippo:types/hippodemospaintegration:bannerdocument:
       jcr:primaryType: hipposys:resourcebundles
       /en:
         jcr:primaryType: hipposys:resourcebundle
-        hippoaddonspaintegrationdemo:content: Content
-        hippoaddonspaintegrationdemo:image: Image
-        hippoaddonspaintegrationdemo:link: Link
-        hippoaddonspaintegrationdemo:title: Title
+        hippodemospaintegration:content: Content
+        hippodemospaintegration:image: Image
+        hippodemospaintegration:link: Link
+        hippodemospaintegration:title: Title
         jcr:name: Banner
       /nl:
         jcr:primaryType: hipposys:resourcebundle
-        hippoaddonspaintegrationdemo:content: Inhoud
-        hippoaddonspaintegrationdemo:image: Afbeelding
-        hippoaddonspaintegrationdemo:link: Link
-        hippoaddonspaintegrationdemo:title: Titel
+        hippodemospaintegration:content: Inhoud
+        hippodemospaintegration:image: Afbeelding
+        hippodemospaintegration:link: Link
+        hippodemospaintegration:title: Titel
         jcr:name: Banner
       /fr:
         jcr:primaryType: hipposys:resourcebundle
-        hippoaddonspaintegrationdemo:content: Contenu
-        hippoaddonspaintegrationdemo:image: Image
-        hippoaddonspaintegrationdemo:link: Lien
-        hippoaddonspaintegrationdemo:title: Titre
+        hippodemospaintegration:content: Contenu
+        hippodemospaintegration:image: Image
+        hippodemospaintegration:link: Lien
+        hippodemospaintegration:title: Titre
         jcr:name: Bannière
       /de:
         jcr:primaryType: hipposys:resourcebundle
-        hippoaddonspaintegrationdemo:content: Inhalt
-        hippoaddonspaintegrationdemo:image: Abbildung
-        hippoaddonspaintegrationdemo:link: Link
-        hippoaddonspaintegrationdemo:title: Titel
+        hippodemospaintegration:content: Inhalt
+        hippodemospaintegration:image: Abbildung
+        hippodemospaintegration:link: Link
+        hippodemospaintegration:title: Titel
         jcr:name: Banner
-    /hippo:configuration/hippo:translations/hippo:types/hippoaddonspaintegrationdemo:newsdocument:
+    /hippo:configuration/hippo:translations/hippo:types/hippodemospaintegration:newsdocument:
       jcr:primaryType: hipposys:resourcebundles
       /en:
         jcr:primaryType: hipposys:resourcebundle
-        hippoaddonspaintegrationdemo:author: Author
-        hippoaddonspaintegrationdemo:content: Content
-        hippoaddonspaintegrationdemo:date: Date
-        hippoaddonspaintegrationdemo:image: Image
-        hippoaddonspaintegrationdemo:introduction: Introduction
-        hippoaddonspaintegrationdemo:location: Location
-        hippoaddonspaintegrationdemo:source: Source
-        hippoaddonspaintegrationdemo:title: Title
+        hippodemospaintegration:author: Author
+        hippodemospaintegration:content: Content
+        hippodemospaintegration:date: Date
+        hippodemospaintegration:image: Image
+        hippodemospaintegration:introduction: Introduction
+        hippodemospaintegration:location: Location
+        hippodemospaintegration:source: Source
+        hippodemospaintegration:title: Title
         jcr:name: News Item
       /nl:
         jcr:primaryType: hipposys:resourcebundle
-        hippoaddonspaintegrationdemo:author: Auteur
-        hippoaddonspaintegrationdemo:content: Inhoud
-        hippoaddonspaintegrationdemo:date: Datum
-        hippoaddonspaintegrationdemo:image: Afbeelding
-        hippoaddonspaintegrationdemo:introduction: Introductie
-        hippoaddonspaintegrationdemo:location: Locatie
-        hippoaddonspaintegrationdemo:source: Bron
-        hippoaddonspaintegrationdemo:title: Titel
+        hippodemospaintegration:author: Auteur
+        hippodemospaintegration:content: Inhoud
+        hippodemospaintegration:date: Datum
+        hippodemospaintegration:image: Afbeelding
+        hippodemospaintegration:introduction: Introductie
+        hippodemospaintegration:location: Locatie
+        hippodemospaintegration:source: Bron
+        hippodemospaintegration:title: Titel
         jcr:name: Nieuwsbericht
       /de:
         jcr:primaryType: hipposys:resourcebundle
-        hippoaddonspaintegrationdemo:author: Verfasser
-        hippoaddonspaintegrationdemo:content: Inhalt
-        hippoaddonspaintegrationdemo:date: Datum
-        hippoaddonspaintegrationdemo:image: Abbildung
-        hippoaddonspaintegrationdemo:introduction: Einführung
-        hippoaddonspaintegrationdemo:location: Standort
-        hippoaddonspaintegrationdemo:source: Quelle
-        hippoaddonspaintegrationdemo:title: Titel
+        hippodemospaintegration:author: Verfasser
+        hippodemospaintegration:content: Inhalt
+        hippodemospaintegration:date: Datum
+        hippodemospaintegration:image: Abbildung
+        hippodemospaintegration:introduction: Einführung
+        hippodemospaintegration:location: Standort
+        hippodemospaintegration:source: Quelle
+        hippodemospaintegration:title: Titel
         jcr:name: News
       /fr:
         jcr:primaryType: hipposys:resourcebundle
-        hippoaddonspaintegrationdemo:author: Auteur
-        hippoaddonspaintegrationdemo:content: Contenu
-        hippoaddonspaintegrationdemo:date: Date
-        hippoaddonspaintegrationdemo:image: Image
-        hippoaddonspaintegrationdemo:introduction: Introduction
-        hippoaddonspaintegrationdemo:location: Lieu
-        hippoaddonspaintegrationdemo:source: Source
-        hippoaddonspaintegrationdemo:title: Titre
+        hippodemospaintegration:author: Auteur
+        hippodemospaintegration:content: Contenu
+        hippodemospaintegration:date: Date
+        hippodemospaintegration:image: Image
+        hippodemospaintegration:introduction: Introduction
+        hippodemospaintegration:location: Lieu
+        hippodemospaintegration:source: Source
+        hippodemospaintegration:title: Titre
         jcr:name: Message d'info

@@ -4,13 +4,13 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.onehippo.cms7.demo</groupId>
-    <artifactId>hippo-addon-spa-integration-demo</artifactId>
+    <artifactId>hippo-demo-spa-integration</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>hippo-addon-spa-integration-demo-essentials</artifactId>
+  <artifactId>hippo-demo-spa-integration-essentials</artifactId>
   <packaging>war</packaging>
-  <name>Hippo Addon SPA Integration Demo Essentials</name>
-  <description>Hippo Addon SPA Integration Demo Essentials</description>
+  <name>Hippo Demo SPA Integration Essentials</name>
+  <description>Hippo Demo SPA Integration Essentials</description>
   <dependencies>
     <dependency>
       <groupId>org.onehippo.cms7</groupId>

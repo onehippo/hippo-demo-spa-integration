@@ -21,26 +21,26 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.hippoecm.hst.content.beans.standard.HippoGalleryImageSet;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
-@HippoEssentialsGenerated(internalName = "hippoaddonspaintegrationdemo:bannerdocument")
-@Node(jcrType = "hippoaddonspaintegrationdemo:bannerdocument")
+@HippoEssentialsGenerated(internalName = "hippodemospaintegration:bannerdocument")
+@Node(jcrType = "hippodemospaintegration:bannerdocument")
 public class Banner extends BaseDocument {
-	@HippoEssentialsGenerated(internalName = "hippoaddonspaintegrationdemo:title")
+	@HippoEssentialsGenerated(internalName = "hippodemospaintegration:title")
 	public String getTitle() {
-		return getProperty("hippoaddonspaintegrationdemo:title");
+		return getProperty("hippodemospaintegration:title");
 	}
 
-	@HippoEssentialsGenerated(internalName = "hippoaddonspaintegrationdemo:content")
+	@HippoEssentialsGenerated(internalName = "hippodemospaintegration:content")
 	public HippoHtml getContent() {
-		return getHippoHtml("hippoaddonspaintegrationdemo:content");
+		return getHippoHtml("hippodemospaintegration:content");
 	}
 
-	@HippoEssentialsGenerated(internalName = "hippoaddonspaintegrationdemo:image")
+	@HippoEssentialsGenerated(internalName = "hippodemospaintegration:image")
 	public HippoGalleryImageSet getImage() {
-		return getLinkedBean("hippoaddonspaintegrationdemo:image", HippoGalleryImageSet.class);
+		return getLinkedBean("hippodemospaintegration:image", HippoGalleryImageSet.class);
 	}
 
-	@HippoEssentialsGenerated(internalName = "hippoaddonspaintegrationdemo:link")
+	@HippoEssentialsGenerated(internalName = "hippodemospaintegration:link")
 	public HippoBean getLink() {
-		return getLinkedBean("hippoaddonspaintegrationdemo:link", HippoBean.class);
+		return getLinkedBean("hippodemospaintegration:link", HippoBean.class);
 	}
 }

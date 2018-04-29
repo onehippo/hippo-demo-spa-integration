@@ -13,7 +13,7 @@ definitions:
           jcr:primaryType: hst:mount
           hst:alias: main
           hst:homepage: root
-          hst:mountpoint: /hst:hst/hst:sites/hippoaddonspaintegrationdemo
+          hst:mountpoint: /hst:hst/hst:sites/hippodemospaintegration
           hst:namedpipeline: SpaSitePipeline
           hst:pagemodelapi: resourceapi
           hst:responseheaders: ['Access-Control-Allow-Origin: http://localhost:3000', 'Access-Control-Allow-Credentials: true']

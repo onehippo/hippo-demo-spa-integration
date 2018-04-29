@@ -1,0 +1,12 @@
+definitions:
+  config:
+    /hst:hst/hst:configurations/hippodemospaintegration/hst:pages/homepage:
+      jcr:primaryType: hst:component
+      hst:referencecomponent: hst:abstractpages/base
+      /main:
+        jcr:primaryType: hst:component
+        hst:template: homepage-main
+        hst:suppresswastemessage: true
+        /container:
+          jcr:primaryType: hst:containercomponentreference
+          hst:referencecomponent: homepage/main
