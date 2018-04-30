@@ -8,9 +8,11 @@ For details on React Demo, see [About React Demo](spa/ABOUT_REACT_DEMO.md).
 
 ## Version Compatibility
 
-| Demo Version   | CMS Version  |
-|:--------------:|:------------:|
-| 1.0.x          | 12.3.x       |
+| Demo Version   | Hippo CMS Version  |
+|:--------------:|:------------------:|
+| 1.0.x          | 12.3.x             |
+
+Check [Hippo CMS Release Notes](https://www.onehippo.org/about/release-notes/release-notes-overview.html).
 
 ## Build Demo CMS project
 

@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.onehippo.cms7</groupId>
     <artifactId>hippo-cms7-release</artifactId>
-    <version>12.3.0-SNAPSHOT</version>
+    <version>12.3.0</version>
     <relativePath></relativePath>
   </parent>
 
@@ -13,7 +13,7 @@
   <description>Hippo Demo SPA Integration Parent</description>
   <groupId>com.onehippo.cms7.demo</groupId>
   <artifactId>hippo-demo-spa-integration-parent</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>pom</packaging>
 
   <repositories>
