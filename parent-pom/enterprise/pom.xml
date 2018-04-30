@@ -13,7 +13,7 @@
   <description>Hippo demo SPA Integration Enterprise Parent</description>
   <groupId>com.onehippo.cms7.demo</groupId>
   <artifactId>hippo-demo-spa-integration-parent</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <packaging>pom</packaging>
 
   <repositories>
