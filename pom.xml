@@ -13,7 +13,7 @@
   <description>Hippo Demo SPA Integration</description>
   <groupId>com.onehippo.cms7.demo</groupId>
   <artifactId>hippo-demo-spa-integration</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <!--
