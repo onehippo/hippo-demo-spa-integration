@@ -93,5 +93,5 @@ and the principles mentioned there
 with the following exceptions:
 - When bumping up project versions, bump up the versions for both [parent-pom/community](parent-pom/community) and
   [parent-pom/enterprise](parent-pom/enterprise) as well.
-  Also, bump up the parent's version in the root pom.xml.
+- Also, bump up the parent element's version in the root pom.xml as it points to either parent pom dependency in the previous step.
 - As this project is just a demo, do not deploy to Maven repositories.
