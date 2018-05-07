@@ -1,0 +1,11 @@
+<div className="blog-post has-edit-button" style="position: relative;">
+  <app-edit-content *ngIf="content.cmsData" [cmsData]="content.cmsData"></app-edit-content>
+  <h2 className="blog-post-title">
+    <a routerLink={{content.link}}>{{content.document.title}}</a>
+  </h2>
+  <p className="blog-post-meta">
+    <span className="blog-post-date">{{content.document.date | date}}</span>
+    <span className="author"><a href="#pagination">{{content.document.author}}</a></span>
+  </p>
+  <p>{{content.document.introduction}}</p>
+</div>
