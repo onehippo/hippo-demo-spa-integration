@@ -4,7 +4,7 @@ import jsonpointer from 'jsonpointer';
 export function getImageUrl(imageRef, pageModel) {
   // get image reference
   let imageUuid;
-  if (imageRef || imageRef.$ref) {
+  if (imageRef && imageRef.$ref) {
     imageUuid = imageRef.$ref
   }
 
