@@ -66,18 +66,43 @@ Build and install the demo like the following:
     $ mvn -P cargo.run
 ```
 
+## Run Demo SPAs
+
+Reference implementations for Angular and React are available. See instructions below on how to install and run them.
+
 ## Run Demo React app
 
-To install and start the React application using Yarn, run the following commands
-(you can skip `yarn install` if you have ever installed the dependencies before):
+To install and start the React application using NPM, run the following commands
+(you can skip `npm install` if you have ever installed the dependencies before):
 
 ```bash
 $ cd spa/react
-$ yarn install
-$ yarn start
+$ npm install
+$ npm run start
 ```
 
 You should now be able to access the React app in delivery tier at http://localhost:8080/site/ or http://localhost:3000.
+
+## Run Demo Angular app
+
+To install and run the Angular application using NPM, run the following commands:
+(you can skip `npm install` if you have ever installed the dependencies before):
+```bash
+$ cd spa/angular
+$ npm install
+$ npm run start
+```
+
+You should now be able to access the Angular app at http://localhost:3000.
+
+Before viewing the site in the CMS, please note that you have to change the front-end renderer in the CMS (default is 
+React):
+* Login to the CMS and go to the Channel Manager
+* Click on Channel > Settings > Select Angular from the front-end framework dropdown
+* Click Save, and then Channel > Publish
+
+The site should now be viewable in the CMS and in the delivery tier at http://localhost:8080/site.
+
 
 ## (Enterprise Edition Only) Test Channel Manager Integration
 

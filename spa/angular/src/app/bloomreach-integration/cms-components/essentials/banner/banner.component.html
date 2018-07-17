@@ -1,0 +1,10 @@
+<div class="jumbotron has-edit-button" *ngIf="content; else configureComponentBlock">
+  <cms-edit-content *ngIf="content._meta" [metaData]="content._meta"></cms-edit-content>
+  <h1>{{content.title}}</h1>
+  <figure>
+    <img src={{imageUrl}} alt={{content.title}}/>
+  </figure>
+  <p [innerHTML]="content.content.value"></p>
+  <p><a class="btn btn-primary btn-lg" href="#banner_link">Learn more</a></p>
+</div>
+<ng-template #configureComponentBlock>Click to configure {{configuration.label}}</ng-template>
