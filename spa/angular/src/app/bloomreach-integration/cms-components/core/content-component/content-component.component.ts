@@ -1,36 +1,35 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { ContentService } from '../../../content.service';
-import { baseUrls } from '../../../env-vars';
+import getImageUrl from "../../../utils/image-url";
+import getNestedObject from '../../../utils/nested-object';
 
 @Component({
-  selector: 'app-content-component',
+  selector: 'cms-content-component',
   templateUrl: './content-component.component.html',
   styleUrls: ['./content-component.component.css']
 })
 export class ContentComponentWrapper implements OnInit {
-  @Input() component: any;
+  @Input() configuration: any;
   content: any;
-  image: string;
 
-  constructor(private contentService: ContentService) {}
+  constructor(protected contentService: ContentService) {}
 
   ngOnInit() {
     this.getContent();
-    this.getImageUrl();
   }
 
   getContent() {
-    if (this.component && this.component.attributes && this.component.attributes.document) {
-      const contentUuid = this.component.attributes.document;
-      this.content = this.contentService.getContentItem(contentUuid);
+    const contentRef = getNestedObject(this.configuration, ['models', 'document', '$ref']);
+    if (contentRef) {
+      this.content = this.contentService.getContentViaReference(contentRef);
     }
   }
 
   getImageUrl() {
-    if (this.content && this.content.document && this.content.document.image && this.content.document.image.handlePath) {
-      this.image = baseUrls.cmsBaseImageUrl + this.content.document.image.handlePath;
+    if (this.content && this.content.image) {
+      const pageModel = this.contentService.getPageModel();
+      return getImageUrl(this.content.image, pageModel);
     }
   }
-
 }

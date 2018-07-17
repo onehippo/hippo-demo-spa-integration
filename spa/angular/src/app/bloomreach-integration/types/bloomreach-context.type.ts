@@ -1,5 +1,5 @@
 export interface BloomreachContext {
   contextPath: string;
-  preview: boolean;
+  preview: string;
   pathInfo: string;
 }

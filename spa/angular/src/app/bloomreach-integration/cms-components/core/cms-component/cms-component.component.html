@@ -1,0 +1,4 @@
+<ng-container *ngFor="let component of components" [ngSwitch]="component.type">
+  <cms-component *ngSwitchCase="'COMPONENT'" [configuration]="component"></cms-component>
+  <cms-container *ngSwitchCase="'CONTAINER_COMPONENT'" [configuration]="component"></cms-container>
+</ng-container>

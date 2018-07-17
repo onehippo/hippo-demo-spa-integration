@@ -1,27 +1,27 @@
-import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
+
+import getNestedObject from '../../../utils/nested-object';
 
 @Component({
-  selector: 'app-edit-content',
+  selector: 'cms-edit-content',
   templateUrl: './edit-content.component.html',
   styleUrls: ['./edit-content.component.css']
 })
 export class EditContentComponent implements OnInit {
-  @Input() cmsData: any;
+  @Input() metaData: any;
 
   constructor(private elementRef: ElementRef) { }
 
   ngOnInit() {
-    if (this.cmsData && this.cmsData.start) {
-      this.addComment(this.cmsData.start);
-    }
+    const nodeSpan = getNestedObject(this.metaData, ['beginNodeSpan', 0, 'data']);
+    this.addComment(nodeSpan);
   }
 
-  addComment(cmsData) {
+  addComment(nodeSpan) {
     try {
-      const cmsDataString = JSON.stringify(cmsData);
-      this.elementRef.nativeElement.innerHTML = `<!-- ${cmsDataString} -->`;
+      this.elementRef.nativeElement.innerHTML = `${nodeSpan}`;
     } catch(e) {
-      console.log(`Error creating HTML comment: ${e}, for data: ${cmsData}`);
+      console.log(`Error creating HTML comment: ${e}, for data: ${nodeSpan}`);
     }
   }
 }

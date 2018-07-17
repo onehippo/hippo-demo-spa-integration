@@ -1,4 +1,4 @@
 export interface BaseComponent {
-  component: any;
+  configuration: any;
   content: any;
 }

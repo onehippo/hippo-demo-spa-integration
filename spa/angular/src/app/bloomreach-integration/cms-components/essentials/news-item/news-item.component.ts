@@ -3,21 +3,23 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ContentService } from '../../../content.service';
 
 @Component({
-  selector: 'app-news-item',
+  selector: 'cms-essentials-news-item',
   templateUrl: './news-item.component.html',
   styleUrls: ['./news-item.component.css']
 })
 export class NewsItemComponent implements OnInit {
-  @Input() contentUuid: any;
+  @Input() contentRef: any;
   content: any;
 
   constructor(private contentService: ContentService) {}
 
   ngOnInit() {
-    this.getContent(this.contentUuid);
+    this.getContent(this.contentRef);
   }
 
-  getContent(contentUuid) {
-    this.content = this.contentService.getContentItem(contentUuid);
+  getContent(contentRef) {
+    if (contentRef && contentRef.$ref) {
+      this.content = this.contentService.getContentViaReference(contentRef.$ref);
+    }
   }
 }

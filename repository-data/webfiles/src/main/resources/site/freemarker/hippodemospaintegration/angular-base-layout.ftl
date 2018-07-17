@@ -21,27 +21,7 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div id="header">
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Angular Demo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="<@hst.link siteMapItemRefId="root"/>">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<@hst.link path="/news"/>">News</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-    <div class="container marketing" id="root">
-      <app-root></app-root>
-    </div>
+    <app-root></app-root>
     <footer>
       <p>&copy; 2017 BloomReach, Inc.</p>
     </footer>

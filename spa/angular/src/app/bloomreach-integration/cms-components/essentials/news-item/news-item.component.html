@@ -1,11 +1,12 @@
 <div className="blog-post has-edit-button" style="position: relative;">
-  <app-edit-content *ngIf="content.cmsData" [cmsData]="content.cmsData"></app-edit-content>
+  <cms-edit-content *ngIf="content._meta" [metaData]="content._meta"></cms-edit-content>
   <h2 className="blog-post-title">
-    <a routerLink={{content.link}}>{{content.document.title}}</a>
+    <a *ngIf="content._links.site.type === 'internal'" routerLink={{content._links.site.href}}>{{content.title}}</a>
+    <a *ngIf="content._links.site.type !== 'internal'" href={{content._links.site.href}}>{{content.title}}</a>
   </h2>
   <p className="blog-post-meta">
-    <span className="blog-post-date">{{content.document.date | date}}</span>
-    <span className="author"><a href="#pagination">{{content.document.author}}</a></span>
+    <span className="blog-post-date">{{content.date | date}}</span>
+    <span className="author"><a href="#pagination">{{content.author}}</a></span>
   </p>
-  <p>{{content.document.introduction}}</p>
+  <p>{{content.introduction}}</p>
 </div>

@@ -1,11 +1,15 @@
 // returns parent and index of child referenced by ID,
 // so that we can easily replace the child
-function findChildById(object, id, parent, idx) {
-  var result;
-  for(var prop in object) {
+export default function findChildById(object, id) {
+  return _findChildById(object, id, null, null);
+}
+
+function _findChildById(object, id, parent, idx) {
+  let result;
+  for(let prop in object) {
     if(object.hasOwnProperty(prop)) {
       if(typeof object[prop] === "object") {
-        result = findChildById(object[prop], id, object, prop);
+        result = _findChildById(object[prop], id, object, prop);
         if(typeof result !== "undefined") {
           return result;
         }
@@ -16,5 +20,3 @@ function findChildById(object, id, parent, idx) {
     }
   }
 }
-
-export { findChildById };

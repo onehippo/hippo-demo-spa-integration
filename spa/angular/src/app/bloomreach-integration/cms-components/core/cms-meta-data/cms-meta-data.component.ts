@@ -4,11 +4,11 @@ export abstract class CmsMetaDataComponent {
 
   constructor(protected elementRef: ElementRef) { }
 
-  addComment(cmsData, position) {
+  addComment(nodeSpan, position) {
     try {
-      this.elementRef.nativeElement.insertAdjacentHTML(position, `<!-- ${cmsData} -->`)
+      this.elementRef.nativeElement.insertAdjacentHTML(position, `${nodeSpan}`)
     } catch(e) {
-      console.log(`Error creating HTML comment: ${e}, for data: ${cmsData}`);
+      console.log(`Error creating HTML comment: ${e}, for data: ${nodeSpan}`);
     }
   }
 }

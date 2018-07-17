@@ -1,14 +1,14 @@
-<div className="blog-post has-edit-button" *ngIf="content; else configureComponentBlock" style="position: relative;">
-  <app-edit-content *ngIf="content.cmsData" [cmsData]="content.cmsData"></app-edit-content>
-  <h2 className="blog-post-title">{{content.document.title}}</h2>
+<div className="blog-post has-edit-button" *ngIf="content; else configureComponentBlock">
+  <cms-edit-content *ngIf="content._meta" [metaData]="content._meta"></cms-edit-content>
+  <h2 className="blog-post-title">{{content.title}}</h2>
   <p className="blog-post-meta">
-    <span className="blog-post-date">{{content.document.date | date}}</span>
-    <span className="author"><a href="#pagination">{{content.document.author}}</a></span>
+    <span className="blog-post-date">{{content.date | date}}</span>
+    <span className="author"><a href="#pagination">{{content.author}}</a></span>
   </p>
-  <p>{{content.document.introduction}}</p>
+  <p>{{content.introduction}}</p>
   <figure>
-    <img src={{image}} alt={{content.document.title}}/>
+    <img src={{imageUrl}} alt={{content.title}}/>
   </figure>
-  <p [innerHTML]="content.document.content.value"></p>
+  <p [innerHTML]="content.content.value"></p>
 </div>
-<ng-template #configureComponentBlock>Click to configure {{component.type}}</ng-template>
+<ng-template #configureComponentBlock>Click to configure {{configuration.label}}</ng-template>

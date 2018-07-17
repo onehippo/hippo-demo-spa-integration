@@ -3,18 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PageComponent } from './bloomreach-integration/cms-components/core/page/page.component';
 import { BloomreachContext } from './bloomreach-integration/types/bloomreach-context.type';
+import baseUrls from './bloomreach-integration/utils/cms-urls';
 
 const routes: Routes = [
   {
-    path: 'site',
+    path: baseUrls.cmsContextPath,
     children: [
       {
-        path: '_cmsinternal',
+        path: baseUrls.cmsPreviewPrefix,
         children: [
           {
             path: '**',
             component: PageComponent,
-            data: { contextPath: 'site', preview: true }
+            data: { contextPath: baseUrls.cmsContextPath, preview: baseUrls.cmsPreviewPrefix }
             // data: new BloomreachContext('site', true, ''),
           }
         ]
@@ -22,18 +23,18 @@ const routes: Routes = [
       {
         path: '**',
         component: PageComponent,
-        data: { contextPath: 'site' }
+        data: { contextPath: baseUrls.cmsContextPath }
         // data: new BloomreachContext('site', false, ''),
       }
     ]
   },
   {
-    path: '_cmsinternal',
+    path: baseUrls.cmsPreviewPrefix,
     children: [
       {
         path: '**',
         component: PageComponent,
-        data: { preview: true }
+        data: { preview: baseUrls.cmsPreviewPrefix }
         // data: new BloomreachContext('', true, ''),
       }
     ]

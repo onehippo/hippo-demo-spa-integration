@@ -4,10 +4,9 @@ import { BannerComponent } from './cms-components/essentials/banner/banner.compo
 import { ContentComponent } from './cms-components/essentials/content/content.component';
 import { NewsListComponent } from './cms-components/essentials/news-list/news-list.component';
 
-
 const componentDefinitions = {
   "Banner": BannerComponent,
-  "org.onehippo.cms7.essentials.components.EssentialsContentComponent": ContentComponent,
+  "Content": ContentComponent,
   "News List": NewsListComponent,
 }
 

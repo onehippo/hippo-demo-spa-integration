@@ -4,14 +4,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, tap } from 'rxjs/operators';
+import * as jsonpointer from 'jsonpointer';
 
-import { BloomreachContext } from "./types/bloomreach-context.type";
-import { baseUrls } from './env-vars';
-
+import { BloomreachContext } from './types/bloomreach-context.type';
+import baseUrls from './utils/cms-urls';
+import findChildById from './utils/find-child-by-id';
 
 @Injectable()
 export class ContentService {
-  pageData: any;
+  pageModel: any;
   bloomreachContext: BloomreachContext;
 
   private getOptions = {
@@ -32,39 +33,52 @@ export class ContentService {
     }
   }
 
-  getPage (): Observable<any> {
+  fetchPageModel (): Observable<any> {
     const apiUrl: string = this.buildApiUrl();
     return this.http.get<any>(apiUrl, this.getOptions)
       .pipe(
-        tap(content => this.pageData = content),
-        catchError(this.handleError('getPage', []))
+        tap(content => this.pageModel = content),
+        catchError(this.handleError('fetchPageModel', []))
       );
+  }
+
+  getPageModel() {
+    return this.pageModel;
   }
 
   updateComponent(componentId, propertiesMap) {
-    const body = this.toUrlEncodedFormData(propertiesMap);
-    const url: string = this.buildApiUrl(componentId);
-    return this.http.post<any>(url, body, this.postOptions)
-      .pipe(
-        tap(response => {
-          // update documents by merging with original documents map
-          if (response.documents) {
-            let documents = this.pageData.documents;
-            Object.assign(documents, response.documents);
-            // documents = Object.assign(documents, response.documents);
-          }
-          return response;
-        }),
-        catchError(this.handleError('updateComponent', []))
-      );
+    // find the component that needs to be updated in the page structure object using its ID
+    const componentToUpdate = findChildById(this.pageModel, componentId);
+    if (componentToUpdate !== undefined) {
+      const body = this.toUrlEncodedFormData(propertiesMap);
+      const url: string = this.buildApiUrl(componentId);
+      return this.http.post<any>(url, body, this.postOptions)
+        .pipe(
+          tap(response => {
+            // update configuration of changed component in existing page model
+            if (response.page) {
+              componentToUpdate.parent[componentToUpdate.idx] = response.page;
+            }
+            // update documents by merging with original documents map
+            if (response.content) {
+              // if page has no associated content there is no content map, create it
+              if (!this.pageModel.content) {
+                this.pageModel.content = {};
+              }
+              Object.assign(this.pageModel.content, response.content);
+            }
+            return this.pageModel;
+          }),
+          catchError(this.handleError('updateComponent', []))
+        );
+    }
   }
 
-  getContentItem (uuid: string): any {
-    if (this.pageData && this.pageData.documents && this.pageData.documents[uuid] && this.pageData.documents[uuid].document) {
-      return this.pageData.documents[uuid];
-    } else {
-      return null;
+  getContentViaReference (contentRef: string): any {
+    if (contentRef && typeof contentRef === 'string') {
+      return jsonpointer.get(this.pageModel, contentRef);
     }
+    return null;
   }
 
   // from rendering.service.js
@@ -77,13 +91,16 @@ export class ContentService {
   private buildApiUrl(componentId?: string): string {
     let url: string = baseUrls.cmsBaseUrl;
     // add api path to URL, and prefix with contextPath and preview-prefix if used
-    if (this.bloomreachContext.contextPath) {
-      url += '/' + this.bloomreachContext.contextPath;
+    if (baseUrls.cmsContextPath !== '') {
+      url += '/' + baseUrls.cmsContextPath;
     }
     if (this.bloomreachContext.preview) {
-      url += '/_cmsinternal';
+      url += '/' + this.bloomreachContext.preview;
     }
-    url += baseUrls.cmsApiPath;
+    if (baseUrls.cmsChannelPath  !== '') {
+      url += '/' + baseUrls.cmsChannelPath;
+    }
+    url += '/' + baseUrls.cmsApiPath;
     if (this.bloomreachContext.pathInfo) {
       url += '/' + this.bloomreachContext.pathInfo;
     }

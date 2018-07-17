@@ -1,17 +1,17 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
-import { ContentService } from '../../../content.service';
-import { CmsMetaDataComponent } from '../cms-meta-data/cms-meta-data.component';
 
+import { CmsMetaDataComponent } from '../cms-meta-data/cms-meta-data.component';
+import { ContentService } from '../../../content.service';
+import getNestedObject from '../../../utils/nested-object';
 
 @Component({
-  selector: 'app-container',
+  selector: 'cms-container',
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.css']
 })
 export class ContainerComponent extends CmsMetaDataComponent implements OnInit {
-  @Input() container;
+  @Input() configuration;
   components: any;
-  cmsData = {};
 
   constructor(
     private contentService: ContentService,
@@ -19,16 +19,20 @@ export class ContainerComponent extends CmsMetaDataComponent implements OnInit {
   ) { super(elementRef); }
 
   ngOnInit(): void {
-    this.components = this.container.components;
+    if (this.configuration && this.configuration.components) {
+      this.components = this.configuration.components;
+    }
     this.addComments();
   }
 
   addComments(): void {
-    if (this.container.cmsData && this.container.cmsData.start && this.container.cmsData.end) {
-      const cmsDataStart = JSON.stringify(this.container.cmsData.start);
-      this.addComment(cmsDataStart, "afterbegin");
-      const cmsDataEnd = JSON.stringify(this.container.cmsData.end);
-      this.addComment(cmsDataEnd, "beforeend");
+    const beginNodeSpan = getNestedObject(this.configuration, ['_meta', 'beginNodeSpan', 0, 'data']);
+    if (beginNodeSpan) {
+      this.addComment(beginNodeSpan, "afterbegin");
+    }
+    const endNodeSpan = getNestedObject(this.configuration, ['_meta', 'endNodeSpan', 0, 'data']);
+    if (endNodeSpan) {
+      this.addComment(endNodeSpan, "beforeend");
     }
   }
 }

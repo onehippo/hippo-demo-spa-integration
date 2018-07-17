@@ -1,17 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { BaseComponent } from '../../core/base-component/base-component.interface';
 import { ContentComponentWrapper } from '../../core/content-component/content-component.component';
-import { ContentService } from "../../../content.service";
+import { ContentService } from '../../../content.service';
 
 @Component({
-  selector: 'app-banner',
+  selector: 'cms-essentials-banner',
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.css']
 })
-export class BannerComponent extends ContentComponentWrapper implements BaseComponent {
+export class BannerComponent extends ContentComponentWrapper implements BaseComponent, OnInit {
+  imageUrl: string;
 
   constructor(contentService: ContentService) {
     super(contentService);
+  }
+
+  ngOnInit() {
+    super.ngOnInit();
+    this.imageUrl = super.getImageUrl();
   }
 }
