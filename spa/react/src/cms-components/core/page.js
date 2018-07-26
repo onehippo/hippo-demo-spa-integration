@@ -10,31 +10,6 @@ export default class CmsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-
-    const windowSPAPreloaded = (typeof window !== 'undefined' && typeof window.SPA !== 'undefined');
-
-    if (windowSPAPreloaded) {
-      window.SPA.init = (cms) => {
-        this.cms = cms;
-      };
-      window.SPA.renderComponent = (id, propertiesMap) => {
-        this.updateState(id, propertiesMap);
-      };
-    } else {
-      window.SPA = {
-        init: (cms) => {
-          this.cms = cms;
-        },
-        renderComponent: (id, propertiesMap) => {
-          this.updateState(id, propertiesMap);
-        }
-      };
-    }
-
-    if (windowSPAPreloaded && typeof window.SPA.cms !== 'undefined') {
-      window.SPA.init(window.SPA.cms);
-      window.SPA.cms = null;
-    }
   }
 
   updateState (componentId, propertiesMap) {
@@ -66,6 +41,23 @@ export default class CmsPage extends React.Component {
     }
   }
 
+  initializeCmsIntegration() {
+    const windowSPAInitialized = (typeof window !== 'undefined' && typeof window.SPA !== 'undefined');
+    if (!windowSPAInitialized) {
+      window.SPA = {
+        renderComponent: (id, propertiesMap) => {
+          this.updateState(id, propertiesMap);
+        },
+        init: (cms) => {
+          this.cms = cms;
+          if (this.state.pageModel) {
+            cms.createOverlay();
+          }
+        }
+      };
+    }
+  }
+
   fetchPageModel() {
     fetchCmsPage(this.props.pathInfo, this.props.preview).then(data => {
       this.setState({
@@ -86,6 +78,7 @@ export default class CmsPage extends React.Component {
   }
 
   componentDidMount() {
+    this.initializeCmsIntegration();
     // fetch page Model for current page
     this.fetchPageModel();
   }
