@@ -46,12 +46,26 @@
     <script src="<@hst.link path="/static/spa/js/popper.min.js"/>"></script>
     <script src="<@hst.link path="/js/bootstrap.min.js"/>"></script>
     <script>
-      // load React app from local Node server or static bundle js resource.
-      $.getScript( "http://localhost:3000/static/js/bundle.js" )
-        .fail(function() {
-          // fallback to bundled React app in static resource
-          $.getScript( "<@hst.link path="/js/react-example-app.js"/>" );
-        });
+      var loadSpaBundles = function() {
+        // load React app from local Node server or static bundle js resource.
+        $.getScript( "http://localhost:3000/static/js/bundle.js" )
+          .fail(function() {
+            // fallback to bundled React app in static resource
+            $.getScript( "<@hst.link path="/js/react-example-app.js"/>" );
+          });
+      };
+
+      window.SPA = {
+        cmsRequest: ${hstRequestContext.cmsRequest?then('true','false')},
+        init: function(cms) {
+          window.SPA.cms = cms;
+          window.setTimeout('loadSpaBundles();', 10);
+        }
+      };
+
+      if (!window.SPA.cmsRequest) {
+        loadSpaBundles();
+      }
     </script>
   </body>
 </html>
