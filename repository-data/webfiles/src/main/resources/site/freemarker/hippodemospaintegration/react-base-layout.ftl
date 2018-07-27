@@ -45,6 +45,13 @@
     <script>window.jQuery || document.write('<script src="<@hst.link path="/js/jquery-2.1.0.min.js"/>"><\/script>')</script>
     <script src="<@hst.link path="/static/spa/js/popper.min.js"/>"></script>
     <script src="<@hst.link path="/js/bootstrap.min.js"/>"></script>
-    <script src="http://localhost:3000/static/js/bundle.js"></script>
+    <script>
+      // load React app from local Node server or static bundle js resource.
+      $.getScript( "http://localhost:3000/static/js/bundle.js" )
+        .fail(function() {
+          // fallback to bundled React app in static resource
+          $.getScript( "<@hst.link path="/js/react-example-app.js"/>" );
+        });
+    </script>
   </body>
 </html>
