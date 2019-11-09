@@ -29,15 +29,21 @@ export default class ContentComponentWrapper extends React.Component {
     let content;
 
     // get content from model
-    if (configuration && configuration.models && configuration.models.document && configuration.models.document['$ref']) {
-      documentUuid = configuration.models.document['$ref'];
+    if (configuration && configuration.models && configuration.models.document) {
+      if (configuration.models.document['$ref']) {
+        documentUuid = configuration.models.document['$ref'];
+        if (documentUuid && (typeof documentUuid === 'string' || documentUuid instanceof String)) {
+          content = jsonpointer.get(pageModel, documentUuid);
+        }
+      } else {
+        content = configuration.models.document;
+      }
     } else if (this.props.documentUuid) {
       // NewsList component passed document ID through property instead of via reference in attributes map
       documentUuid = this.props.documentUuid;
-    }
-
-    if (documentUuid && (typeof documentUuid === 'string' || documentUuid instanceof String)) {
-      content = jsonpointer.get(pageModel, documentUuid);
+      if (documentUuid && (typeof documentUuid === 'string' || documentUuid instanceof String)) {
+        content = jsonpointer.get(pageModel, documentUuid);
+      }
     }
 
     if (!content && preview) {

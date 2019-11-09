@@ -1,17 +1,19 @@
 import { baseUrls } from '../env-vars';
 import jsonpointer from 'jsonpointer';
 
-export function getImageUrl(imageRef, pageModel) {
+export function getImageUrl(imageObj, pageModel) {
   // get image reference
   let imageUuid;
-  if (imageRef && imageRef.$ref) {
-    imageUuid = imageRef.$ref
+  if (imageObj && imageObj.$ref) {
+    imageUuid = imageObj.$ref
   }
 
-  // get serialized image via reference
+  // Get image model object from either JSONPointer reference ("$ref") or the embedded one itself.
   let image;
   if (imageUuid && (typeof imageUuid === 'string' || imageUuid instanceof String)) {
     image = jsonpointer.get(pageModel, imageUuid);
+  } else {
+    image = imageObj;
   }
 
   // build URL
